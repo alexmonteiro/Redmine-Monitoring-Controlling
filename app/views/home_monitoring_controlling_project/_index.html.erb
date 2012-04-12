@@ -1,0 +1,208 @@
+<!--
+Tasks by Statuses / Situação por Tarefas 
+-->
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+         	credits: {
+	 		  enabled: false
+			},
+            chart: {
+                renderTo: 'container',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<%=@project.name%>'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y,0) +' <%=t :tasks_label%>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: <%=@situacoes.map{ |situacao| [situacao.name.to_s, situacao.totalissues.to_i]}.inspect.html_safe%>
+            }]
+        });
+    });
+    
+});
+
+</script>
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+     	credits: {
+ 		  enabled: false
+		},		
+		chart: {
+			renderTo: 'containerColumn',
+			type: 'column'
+		},
+		title: {
+			text: '<%=t :statuses_issue_label_title %>'
+		},
+		xAxis: {
+			categories: <%=@situacoes.map{ |situacao| situacao.name.to_s}.inspect.html_safe%>,
+			labels: {enabled: false}
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '<%=t :tasks_label%> ',
+			}
+		},
+		legend: {
+			enabled: true
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.x +'</b><br/>'+
+					'<%=t :tasks_label%> '+ Highcharts.numberFormat(this.y, 1);
+			}
+		},
+			series: [
+			 <%@situacoes.each do |cat|%>
+			  {name: <%=cat.name.inspect.html_safe%>, 
+			   data: [<%=cat.totalissues%>],	
+			   dataLabels: {
+								enabled: true,
+								rotation: -90,
+								color: '#FFFFFF',
+								align: 'right',
+								x: -3,
+								y: 10,
+								formatter: function() {
+									return this.y;
+								},
+								style: {
+									font: 'normal 13px Verdana, sans-serif'
+								}
+							}
+			  }<%if !(@situacoes.last == cat)%>,<%end%>
+			 <%end%>
+			]
+	});
+});
+</script>
+
+<!--
+ Task Management / Gerenciamento de Tarefas
+-->
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+	     	credits: {
+	 		  enabled: false
+			},
+            chart: {
+                renderTo: 'managementissues',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<%=t :task_manageable_chart_title %>'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y,0)+ ' <%=t :tasksof_label%> '+<%= @project.issues.count %>;
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+					showInLegend: true,
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+						distance: 0,
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Tarefas por Situação',
+                data: <%=@managementissues.map{ |issue| [issue.typemanagement.to_s, issue.totalissues.to_i]}.inspect.html_safe%>
+            }]
+        });
+    });
+    
+});
+</script>
+
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+	     	credits: {
+	 		  enabled: false
+			},
+            chart: {
+                renderTo: 'delayedissues',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<%=t :task_manageable_chart_overdue_title %>'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y,0)+ ' <%=t :tasksof_label%> '+<%= @managementissues.first.totalissues %>+' <%=t :manageable_label%>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+					showInLegend: true,
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+						distance: 0,
+                        formatter: function() {
+                            return Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Tarefas atrasadas',
+                data: <%=@issuesdelayedschart.map{ |issue| [issue.typeissue.to_s, issue.totalissuedelayed.to_i]}.inspect.html_safe%>
+            }]
+        });
+    });
+    
+});
+
+</script>

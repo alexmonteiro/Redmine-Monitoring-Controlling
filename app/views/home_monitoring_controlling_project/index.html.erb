@@ -1,0 +1,45 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => 'redmine_monitoring_controlling' %>
+    <%= javascript_include_tag 'rails.js', :plugin => 'redmine_monitoring_controlling' %>
+    <%= javascript_include_tag 'highcharts.js', :plugin => 'redmine_monitoring_controlling' %>
+
+<% end %>
+
+<%= render :partial => 'index' %>
+
+<div style="float: left;">
+<h2><%=t :statuses_issue_label_title %></h2>
+ <div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
+ <div id="containerColumn" style="min-width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
+</div>
+
+<div style="float: left;">
+<h2><%=t :task_management_label_title %></h2>
+ <div id="managementissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
+ <div style="float: left;">
+  <%@managementissues.each do |issue|%>
+   <div><b><%=issue.typemanagement%>: <%=issue.totalissues%></b>
+	 <%if (issue.id == 1)%>
+	  <div><%=t :manageable_text_tip%></div>	  <br/>
+	 <%else%>
+	  <div><%=t :unmanageable_text_tip%></div>
+	 <%end%>
+   </div>
+  <%end%>
+ </div>
+
+ <div id="delayedissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
+ <div style="float: left;">
+  <%@issuesdelayedschart.each do |issue|%>
+   <div><b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
+	<%if (issue.id == 2)%>
+	 <% @issuesdelayeds.each do |delayed| %>
+	   <%link_name = delayed.id.to_s+' - '+delayed.subject%>
+	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %></div>
+	 <%end%>
+	<%end%>
+   </div>
+  <%end%>
+ </div>
+<p id="notice"><%= notice %></p>
+</div>

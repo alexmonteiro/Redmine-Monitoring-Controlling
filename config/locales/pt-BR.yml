@@ -1,0 +1,22 @@
+pt-BR:
+  monitoring_controlling_title: "Monitoramento & Controle"
+  project_module_monitoring_controlling_project: "Monitoramento & Controle por Projeto"
+  permission_view_home_monitoring_controlling: "Visualizar Monitoramento & Controle"
+  monitoring_controlling_project: "Monitoramento & Controle por Projeto"
+  statuses_issue_label_title: "Situação das tarefas"
+
+  task_management_label_title: "Gerenciamento das Tarefas"
+  task_manageable_chart_title: "Tarefas Gerenciáveis"
+  task_manageable_chart_overdue_title: "Tarefas Atrasadas"
+  
+  manageable_label: "Gerenciável"
+  unmanageable_label: "Não Genrenciável"
+  manageable_text_tip: "Tarefas com data de entrega."
+  unmanageable_text_tip: "Tarefas sem data de entrega preenchida"
+  
+  tasks_label: "tarefa(s)"
+  tasksof_label: "tarefa(s) de"    
+  
+  overdue_label: "Atrasada"
+  delivered_label: "Entregue"
+  tobedelivered_label: "A ser entregue"
