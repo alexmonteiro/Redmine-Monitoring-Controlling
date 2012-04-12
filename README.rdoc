@@ -15,5 +15,4 @@ O Plugin M&C é utilizado como uma ferramenta gráfica de apoio para facilitar o
 
 1. Copie ou clone a o conteúdo do plugin para a pasta de plugins do Redmine: /vendor/plugins/ .
  git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git #{RAILS_ROOT}/vendor/plugins/redmine_monitoring_controlling
-
 2. Reinicie o Redmine e um novo módulo e permissões de acesso estarão disponíveis.
