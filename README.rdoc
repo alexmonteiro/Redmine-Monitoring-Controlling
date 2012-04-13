@@ -1,19 +1,17 @@
 = Monitoramento & Controle (M&C) - Redmine Plugin
 
-O Plugin M&C é utilizado como uma ferramenta gráfica de apoio para facilitar o acompanhamento das atividdes registrada em um projeto redmine.
+O Plugin M&C é utilizado como uma ferramenta gráfica de apoio para facilitar o acompanhamento das atividdes registrada em um projeto Redmine.
 
-== Características
+== Informações
 
-* Gráfico das tarefas agrupadas por Situção
-* Gráfico apresentando as tarefas gerenciáveis e não gerenciáveis
-* Tarefas gerenciáveis são aquelas com a data de entrega estabelecida e que ainda não foram para alguma situação do tipo fechada.
-* Tarefas não gerenciáveis são aquelas com a data de entrega não preenchida, ou seja, sem condições de estabelecer um parâmetro de mensuração.
-* Gráfico apresentando as tarefas atrasadas dentro do grupo das tarefas gerenciáveis.
+* Visite: Monitoramento-&-Controle[http://alexmonteiro.github.com/Redmine-Monitoring-Controlling]
 
 
 == Instalação 
 
 * Copie ou clone a o conteúdo do plugin para a pasta de plugins do Redmine: /vendor/plugins/ .
- git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git #{RAILS_ROOT}/vendor/plugins/redmine_monitoring_controlling
-
+    
+    git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git 
+    #{RAILS_ROOT}/vendor/plugins/redmine_monitoring_controlling
+    
 * Reinicie o Redmine e um novo módulo e permissões de acesso estarão disponíveis.
