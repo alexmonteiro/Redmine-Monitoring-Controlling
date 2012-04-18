@@ -15,6 +15,13 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 
 == How to install 
 
+=== Pre-requisit
+
+* Redmine trunk version;
+* Mysql database - because some date functions may get error with another data bases.
+
+=== Step-by-step
+
 * Copie ou clone a o conteúdo do plugin para a pasta de plugins do Redmine: /vendor/plugins/ .
     
     cd /{redmineInstalationDir}/vendor/plugins
