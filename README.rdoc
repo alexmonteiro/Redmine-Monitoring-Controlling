@@ -30,3 +30,8 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 * Run db:migrate_plugins to copy the assets.
 * Restart your redmine application.
 * Activate your M&C on projects modulues.
+
+== Credits
+
+* Highcharts[http://www.highcharts.com/]: interactive javascript charts for your web projects;
+* Railscasts[http://railscasts.com/]: learn how in #223 epsode[http://railscasts.com/episodes/223-charts] to use highcharts on your rails app.
