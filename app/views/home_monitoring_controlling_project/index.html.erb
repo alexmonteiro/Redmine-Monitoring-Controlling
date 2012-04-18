@@ -1,11 +1,14 @@
 <% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'thickbox.css', :plugin => 'redmine_monitoring_controlling' %>
     <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => 'redmine_monitoring_controlling' %>
     <%= javascript_include_tag 'rails.js', :plugin => 'redmine_monitoring_controlling' %>
     <%= javascript_include_tag 'highcharts.js', :plugin => 'redmine_monitoring_controlling' %>
+    <%= javascript_include_tag 'thickbox.js', :plugin => 'redmine_monitoring_controlling' %>
 
 <% end %>
-
 <%= render :partial => 'index' %>
+
+
 <div style="float: left;">
 <h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%> </h2>
  <div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
@@ -30,15 +33,26 @@
  <div id="delayedissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
  <div style="float: left;">
   <%@overdueissueschart.each do |issue|%>
-   <div><b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
+   <div>
 	<%if (issue.id == 2)%>
+	 <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContent&modal=false" title='<%=issue.typeissue%>(<%=issue.totalissuedelayed%>)' class="thickbox"><%=issue.typeissue%>: <%=issue.totalissuedelayed%></a></b>
+     <div id="hiddenModalContent" style="display: none;">
 	 <% @overdueissues.each do |delayed| %>
 	   <%link_name = delayed.id.to_s+' - '+delayed.subject%>
 	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %> - <span style="color: red;"><%=delayed.overduedays%> <%=t :days_late_text%></span></div>
 	 <%end%>
+	</div>
+	<%else%>
+	 <b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
 	<%end%>
    </div>
   <%end%>
  </div>
 <p id="notice"><%= notice %></p>
 </div>
+
+		
+	
+
+
+
