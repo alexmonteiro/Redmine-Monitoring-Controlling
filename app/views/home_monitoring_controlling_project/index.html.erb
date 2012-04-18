@@ -6,9 +6,8 @@
 <% end %>
 
 <%= render :partial => 'index' %>
-
 <div style="float: left;">
-<h2><%=t :statuses_issue_label_title %></h2>
+<h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%> </h2>
  <div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
  <div id="containerColumn" style="min-width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
 </div>
@@ -30,12 +29,12 @@
 
  <div id="delayedissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
  <div style="float: left;">
-  <%@issuesdelayedschart.each do |issue|%>
+  <%@overdueissueschart.each do |issue|%>
    <div><b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
 	<%if (issue.id == 2)%>
-	 <% @issuesdelayeds.each do |delayed| %>
+	 <% @overdueissues.each do |delayed| %>
 	   <%link_name = delayed.id.to_s+' - '+delayed.subject%>
-	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %></div>
+	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %> - <span style="color: red;"><%=delayed.overduedays%> <%=t :days_late_text%></span></div>
 	 <%end%>
 	<%end%>
    </div>

@@ -1,11 +1,9 @@
-# English strings go here for Rails i18n
 en:
     monitoring_controlling_title: "Monitoring & Controlling"
     project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"    
     permission_view_home_monitoring_controlling: "View Monitoring & Controlling"
     monitoring_controlling_project: "Monitoring & Controlling by Projeto"
     statuses_issue_label_title: "Tasks by Statuses"
-    
     
     task_management_label_title: "Taks Management"
     task_manageable_chart_title: "Manageable Tasks"
@@ -20,6 +18,7 @@ en:
     tasksof_label: "task(s) of"    
     
     overdue_label: "Overdue"
+    overdue_text: "overdue(s)"    
     delivered_label: "Delivered"
     tobedelivered_label: "To be delivered"
-    
+    days_late_text: "day(s) late"

@@ -10,7 +10,7 @@ pt-BR:
   task_manageable_chart_overdue_title: "Tarefas Atrasadas"
   
   manageable_label: "Gerenciável"
-  unmanageable_label: "Não Genrenciável"
+  unmanageable_label: "Não Gerenciável"
   manageable_text_tip: "Tarefas com data de entrega."
   unmanageable_text_tip: "Tarefas sem data de entrega preenchida"
   
@@ -18,5 +18,7 @@ pt-BR:
   tasksof_label: "tarefa(s) de"    
   
   overdue_label: "Atrasada"
+  overdue_text: "atrasada(s)"
   delivered_label: "Entregue"
   tobedelivered_label: "A ser entregue"
+  days_late_text: "dia(s) atrasada(s)"

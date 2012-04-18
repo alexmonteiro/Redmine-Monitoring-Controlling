@@ -39,7 +39,7 @@ $(function () {
             },
             series: [{
                 type: 'pie',
-                data: <%=@situacoes.map{ |situacao| [situacao.name.to_s, situacao.totalissues.to_i]}.inspect.html_safe%>
+                data: <%=@statuses.map{ |situacao| [situacao.name.to_s, situacao.totalissues.to_i]}.inspect.html_safe%>
             }]
         });
     });
@@ -62,7 +62,7 @@ $(document).ready(function() {
 			text: '<%=t :statuses_issue_label_title %>'
 		},
 		xAxis: {
-			categories: <%=@situacoes.map{ |situacao| situacao.name.to_s}.inspect.html_safe%>,
+			categories: <%=@statuses.map{ |situacao| situacao.name.to_s}.inspect.html_safe%>,
 			labels: {enabled: false}
 		},
 		yAxis: {
@@ -81,7 +81,7 @@ $(document).ready(function() {
 			}
 		},
 			series: [
-			 <%@situacoes.each do |cat|%>
+			 <%@statuses.each do |cat|%>
 			  {name: <%=cat.name.inspect.html_safe%>, 
 			   data: [<%=cat.totalissues%>],	
 			   dataLabels: {
@@ -98,7 +98,7 @@ $(document).ready(function() {
 									font: 'normal 13px Verdana, sans-serif'
 								}
 							}
-			  }<%if !(@situacoes.last == cat)%>,<%end%>
+			  }<%if !(@statuses.last == cat)%>,<%end%>
 			 <%end%>
 			]
 	});
@@ -198,7 +198,7 @@ $(function () {
             series: [{
                 type: 'pie',
                 name: 'Tarefas atrasadas',
-                data: <%=@issuesdelayedschart.map{ |issue| [issue.typeissue.to_s, issue.totalissuedelayed.to_i]}.inspect.html_safe%>
+                data: <%=@overdueissueschart.map{ |issue| [issue.typeissue.to_s, issue.totalissuedelayed.to_i]}.inspect.html_safe%>
             }]
         });
     });
