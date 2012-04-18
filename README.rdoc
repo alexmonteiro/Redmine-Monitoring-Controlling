@@ -34,4 +34,4 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 == Credits
 
 * Highcharts[http://www.highcharts.com/]: interactive javascript charts for your web projects;
-* Railscasts[http://railscasts.com/]: learn how in #223 epsode[http://railscasts.com/episodes/223-charts] to use highcharts on your rails app.
+* Railscasts[http://railscasts.com/]: learn how in #223[http://railscasts.com/episodes/223-charts] episode to use highcharts on your rails app.
