@@ -22,3 +22,5 @@ pt-BR:
   delivered_label: "Entregue"
   tobedelivered_label: "A ser entregue"
   days_late_text: "dia(s) atrasada(s)"
+  
+  close_label: "fechar"

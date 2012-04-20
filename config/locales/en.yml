@@ -22,3 +22,5 @@ en:
     delivered_label: "Delivered"
     tobedelivered_label: "To be delivered"
     days_late_text: "day(s) late"
+
+    close_label: "fechar"
