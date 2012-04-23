@@ -25,12 +25,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
       
      return array
   end
-  
-  def teste
-    @project = Project.find_by_identifier(params[:id])
-  end
-  
-  
+    
   def index
     #get main project
     @project = Project.find_by_identifier(params[:id])
