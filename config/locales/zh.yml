@@ -1,0 +1,26 @@
+zh:
+   monitoring_controlling_title: "项目监控"
+   project_module_monitoring_controlling_project: "项目监控"
+   permission_view_home_monitoring_controlling: "监控视图"
+   monitoring_controlling_project: "项目监控"
+   statuses_issue_label_title: "任务情况（按状态）"
+
+   task_management_label_title: "任务管理"
+   task_manageable_chart_title: "可控任务分布图"
+   task_manageable_chart_overdue_title: "逾期任务分布图"
+
+   manageable_label: "已定义计划完成时间任务"
+   unmanageable_label: "未定义计划完成时间任务"
+   manageable_text_tip: "当前项目中所有已定义计划完成日期的任务。"
+   unmanageable_text_tip: "当前项目中所有未定义计划完成日期的任务。"
+
+   tasks_label: "任务"
+   tasksof_label: " 任务 /"    
+
+   overdue_label: "逾期"
+   overdue_text: "逾期"        
+   delivered_label: "已交付"
+   tobedelivered_label: "即将交付"
+   days_late_text: "日延迟"    
+
+   close_label: "关闭"
