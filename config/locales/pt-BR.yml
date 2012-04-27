@@ -1,4 +1,8 @@
 pt-BR:
+  #menu
+  mc_tasksmgmt_menu_label: "Gerenciamento de Tarefas"
+  mc_timemgmt_menu_label: "Gerenciamento de Tempo" 
+  
   monitoring_controlling_title: "Monitoramento & Controle"
   project_module_monitoring_controlling_project: "Monitoramento & Controle por Projeto"
   permission_view_home_monitoring_controlling: "Visualizar Monitoramento & Controle"
@@ -24,3 +28,13 @@ pt-BR:
   days_late_text: "dia(s) atrasada(s)"
   
   close_label: "fechar"
+  
+  # formatos de data e hora
+  default_date_format: "%d/%m/%Y"
+  
+  # time management screen
+  time_mgmt_label_title: "Horas Planejada por Horas Executadas"
+  time_mgmt_areaspline_yaxis_label: "Tempo (horas)"
+  time_mgmt_estimated_label: "Planejado"
+  time_mgmt_spent_label: "Executado"
+  time_mgmt_hours_label: "hora(s)"

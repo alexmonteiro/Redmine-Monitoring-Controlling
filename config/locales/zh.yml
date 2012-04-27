@@ -1,4 +1,8 @@
 zh:
+   #menu
+   mc_tasksmgmt_menu_label: "Tasks Management"
+   mc_timemgmt_menu_label: "Time Management"
+        
    monitoring_controlling_title: "项目监控"
    project_module_monitoring_controlling_project: "项目监控"
    permission_view_home_monitoring_controlling: "监控视图"
@@ -24,3 +28,13 @@ zh:
    days_late_text: "日延迟"    
 
    close_label: "关闭"
+
+   # date format
+   default_date_format: "%Y/%m/%d"   
+  
+   # time management screen
+   time_mgmt_label_title: "Due hours and Spent hours"
+   time_mgmt_areaspline_yaxis_label: "Time (hours)"
+   time_mgmt_estimated_label: "Estimated"
+   time_mgmt_spent_label: "Executed"
+   time_mgmt_hours_label: "hour(s)"   

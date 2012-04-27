@@ -1,14 +1,8 @@
-<% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'thickbox.css', :plugin => 'redmine_monitoring_controlling' %>
-    <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => 'redmine_monitoring_controlling' %>
-    <%= javascript_include_tag 'rails.js', :plugin => 'redmine_monitoring_controlling' %>
-    <%= javascript_include_tag 'highcharts.js', :plugin => 'redmine_monitoring_controlling' %>
-    <%= javascript_include_tag 'exporting.js', :plugin => 'redmine_monitoring_controlling' %>
-    <%= javascript_include_tag 'thickbox.js', :plugin => 'redmine_monitoring_controlling' %>
-
-<% end %>
+<%= render :partial => 'contentHeader' %>
 
 <%= render :partial => 'index' %>
+
+<%= render :partial => 'mcmenu' %>
 
 <div style="float: left;">
 <h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%> </h2>
@@ -51,3 +45,7 @@
  </div>
 <p id="notice"><%= notice %></p>
 </div>
+
+	
+	
+	

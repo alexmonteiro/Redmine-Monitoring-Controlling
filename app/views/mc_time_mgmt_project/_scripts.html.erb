@@ -1,0 +1,145 @@
+<!-- 
+ Timeline Sum Estimated Hours and Executed Hours by due dates  
+-->
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		credits: {
+ 		  enabled: false
+		},
+		chart: {
+			renderTo: 'containerSpentHours',
+			type: 'areaspline'
+		},
+		title: {
+			text: '<%= @project.name%>'
+		},
+		subtitle: {
+			text: '<%=t :time_mgmt_label_title%>'
+		},
+		xAxis: {
+			categories: [
+							<% @issuesSpentHours.each do | issue | %>
+							  <%= issue.due_date.strftime(t(:default_date_format)).inspect %>,
+							<%end%>
+						],
+
+						labels:{
+							enabled: true,
+							rotation: 90,
+							y: 40
+						}
+		},
+		yAxis: {
+			title: {
+				text: '<%=t :time_mgmt_areaspline_yaxis_label %>'
+			},
+			min: 0
+		},
+		tooltip: {
+			formatter: function() {
+					return '<b>'+ this.series.name +'</b><br/>'+
+					this.x +' : '+ Highcharts.numberFormat(this.y,2) +' horas';
+			}
+		},
+		plotOptions: {
+					areaspline: {
+						fillOpacity: 0.5
+					}
+				},		
+		series: [ {
+			name: '<%=t :time_mgmt_estimated_label%>',
+			data:
+			[ 
+			 <% @issuesSpentHours.each do | issue | %>
+			  <%=issue.sumEstimatedHours.to_f%>,
+			 <%end%>
+			]
+		},
+		{
+			name: '<%=t :time_mgmt_spent_label %>',
+			data:
+			[ 
+			 <% @issuesSpentHours.each do | issue | %>
+			  <%=issue.sumSpentHours.to_f%>,
+			 <%end%>
+			]
+		}		
+		]
+	});
+});
+</script>
+
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+     	credits: {
+ 		  enabled: false
+		},		
+		chart: {
+			renderTo: 'containerColumn',
+			type: 'column'
+		},
+		title: {
+			text: '<%=t :time_mgmt_label_title%>'
+		},
+		xAxis: {
+			categories: ['<%=t :time_mgmt_estimated_label%>','<%=t :time_mgmt_spent_label %>'],
+			labels: {enabled: false}
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '<%=t :time_mgmt_areaspline_yaxis_label%> ',
+			}
+		},
+		legend: {
+			enabled: true
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.series.name +'</b><br/>'+
+					Highcharts.numberFormat(this.y, 2) + '<%=t :time_mgmt_hours_label%> ';
+			}
+		},
+			series: [
+			  {name: '<%=t :time_mgmt_estimated_label%>', 
+			   data: [<%= @issuesSpentHours.last.sumEstimatedHours %>],	
+			   dataLabels: {
+								enabled: true,
+								rotation: 0,
+								color: '#FFFFFF',
+								align: 'right',
+								x: -3,
+								y: 13,
+								formatter: function() {
+									return Highcharts.numberFormat(this.y,2);
+								},
+								style: {
+									font: 'normal 13px Verdana, sans-serif'
+								}
+							}
+			  },
+			  {name: '<%=t :time_mgmt_spent_label %>', 
+			   data: [<%= @issuesSpentHours.last.sumSpentHours %>],	
+			   dataLabels: {
+								enabled: true,
+								rotation: 0,
+								color: '#FFFFFF',
+								align: 'right',
+								x: -3,
+								y: 13,
+								formatter: function() {
+									return Highcharts.numberFormat(this.y,2);
+								},
+								style: {
+									font: 'normal 13px Verdana, sans-serif'
+								}
+							}
+			  }			
+			]
+	});
+});
+</script>

@@ -8,10 +8,21 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 
 == Features
 
+===v0.0.1
 * Pie Chart of issues by statuses;
 * Pie Chart of manageable and unmanagleabe issues;
 * Chart with overdue tasks by project.
 
+===Master Version
+
+====Task Management
+* Pie Chart of issues by statuses;
+* Pie Chart of manageable and unmanagleabe issues;
+* Chart with overdue tasks by project.
+
+====Task Management
+* Line chart with estimated hours and spent hours till due date of tasks.
+* Column chart with ammount of estimated and spent hours on project.
 
 == How to install 
 

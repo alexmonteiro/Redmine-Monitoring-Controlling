@@ -16,7 +16,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
     
   def return_ids(id)       
      array = Array.new
-     arrayV = Array.new
      array.push(id)  
      subprojects = subProjects(id)
      subprojects.each do |project|     
@@ -135,6 +134,8 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                     order by overduedays desc;")
                                                     
 
-
+                                                                          
+  
+  
   end
 end
