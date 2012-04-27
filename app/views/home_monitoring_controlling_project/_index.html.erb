@@ -76,8 +76,8 @@ $(document).ready(function() {
 		},
 		tooltip: {
 			formatter: function() {
-				return '<b>'+ this.x +'</b><br/>'+
-					'<%=t :tasks_label%> '+ Highcharts.numberFormat(this.y, 1);
+				return '<b>'+ this.series.name +'</b><br/>'+
+					'<%=t :tasks_label%> '+ Highcharts.numberFormat(this.y, 0);
 			}
 		},
 			series: [
