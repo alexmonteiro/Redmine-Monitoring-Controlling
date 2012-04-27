@@ -3,7 +3,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
 
   menu_item :monitoring_controlling_project
   before_filter :find_optional_project
-  before_filter :find_project, :authorize, :only => :index
+  before_filter :find_project, :authorize
   
 
   def find_project

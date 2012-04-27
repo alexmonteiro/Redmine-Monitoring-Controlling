@@ -10,7 +10,7 @@ Redmine::Plugin.register :redmine_monitoring_controlling do
   
   project_module :monitoring_controlling_project do
       permission :view_home_monitoring_controlling, :home_monitoring_controlling_project => :index
-      permission :view_timemng_mc, :home_timemng_mc_project => :index
+      permission :view_mc_time_mgmt_project, :mc_time_mgmt_project => :index
   end
   
   menu :project_menu, :monitoring_controlling_project, { :controller => 'home_monitoring_controlling_project', :action => 'index' }, :caption => :monitoring_controlling_title

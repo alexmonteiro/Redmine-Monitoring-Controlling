@@ -2,10 +2,13 @@ en:
     #menu
     mc_tasksmgmt_menu_label: "Tasks Management"
     mc_timemgmt_menu_label: "Time Management"
-    
+
+    #permissions
+    permission_view_home_monitoring_controlling: "View M&C Tasks Management"
+    permission_view_mc_time_mgmt_project: "View M&C Time Management"
+        
     monitoring_controlling_title: "Monitoring & Controlling"
     project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"    
-    permission_view_home_monitoring_controlling: "View Monitoring & Controlling"
     monitoring_controlling_project: "Monitoring & Controlling by Projeto"
     statuses_issue_label_title: "Tasks by Statuses"
     

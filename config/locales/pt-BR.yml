@@ -2,10 +2,13 @@ pt-BR:
   #menu
   mc_tasksmgmt_menu_label: "Gerenciamento de Tarefas"
   mc_timemgmt_menu_label: "Gerenciamento de Tempo" 
+
+  #permissions
+  permission_view_home_monitoring_controlling: "Visualizar M&C Gerenciamento de Tarefas"
+  permission_view_mc_time_mgmt_project: "Visualizar M&C Gerenciamento de Tempo"  
   
   monitoring_controlling_title: "Monitoramento & Controle"
   project_module_monitoring_controlling_project: "Monitoramento & Controle por Projeto"
-  permission_view_home_monitoring_controlling: "Visualizar Monitoramento & Controle"
   monitoring_controlling_project: "Monitoramento & Controle por Projeto"
   statuses_issue_label_title: "Situação das tarefas"
 
