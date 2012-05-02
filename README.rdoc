@@ -29,7 +29,6 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 === Pre-requisit
 
 * Redmine trunk version;
-* Mysql database - because some date functions may get error with another data bases.
 
 === Step-by-step
 
