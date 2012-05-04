@@ -59,21 +59,21 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date <  '#{Date.today}' 
-                                                  and status_id in (select id from issue_statuses where is_closed = 0)
+                                                  and status_id in (select id from issue_statuses where is_closed = FALSE)
                                                   union
                                                   select 1 as id, '#{t :delivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues  
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date < '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = 1) 
+                                                  and status_id in (select id from issue_statuses where is_closed = TRUE) 
                                                   union
                                                   select 3 as id, '#{t :tobedelivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues  
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date >= '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = 0)
+                                                  and status_id in (select id from issue_statuses where is_closed = FALSE)
                                                   order by 1;")    
 
    
@@ -83,7 +83,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                     where project_id in (#{stringSqlProjectsSubPorjects})
                                                     and due_date is not null
                                                     and due_date < '#{Date.today}' 
-                                                    and status_id in (select id from issue_statuses where is_closed = 0)
+                                                    and status_id in (select id from issue_statuses where is_closed = FALSE)
                                                     order by due_date;")
                                                     
 
