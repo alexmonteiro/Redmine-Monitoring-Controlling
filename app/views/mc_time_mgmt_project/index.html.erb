@@ -1,13 +1,18 @@
 <%= render :partial => '/home_monitoring_controlling_project/contentHeader' %>
 
-<%= render :partial => 'scripts' %>
+<% if @issuesSpentHours.count > 0  %>
+ <%= render :partial => 'scripts' %>
+<%end%>
 
 <%= render :partial => '/home_monitoring_controlling_project/mcmenu' %>
 
 <h2><%=t :time_mgmt_label_title %></h2>
+<% if @issuesSpentHours.count == 0  %>
+<div id="errorExplanation"><%=t :time_mgmt_error_no_issues_duedate_found_text %></div>
+<%end%>
+
 <div id="containerSpentHours" style="min-width: 600px; height: 400px; margin: 0 auto;"></div>
 
 <div id="containerColumn" style="min-width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
 
-<%= @issuesSpentHoursTotal.to_s%>
 

@@ -41,3 +41,4 @@ pt-BR:
   time_mgmt_estimated_label: "Planejado"
   time_mgmt_spent_label: "Executado"
   time_mgmt_hours_label: "hora(s)"
+  time_mgmt_error_no_issues_duedate_found_text: "Nenhuma tarefa com data de entrega preenchida foi encontrada."

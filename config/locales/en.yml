@@ -41,3 +41,4 @@ en:
     time_mgmt_estimated_label: "Estimated"
     time_mgmt_spent_label: "Executed"
     time_mgmt_hours_label: "hour(s)"
+    time_mgmt_error_no_issues_duedate_found_text: "No issues with due date resgistered was found."    
