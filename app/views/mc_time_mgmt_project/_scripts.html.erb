@@ -40,7 +40,7 @@ $(document).ready(function() {
 		tooltip: {
 			formatter: function() {
 					return '<b>'+ this.series.name +'</b><br/>'+
-					this.x +' : '+ Highcharts.numberFormat(this.y,2) +' horas';
+					this.x +' : '+ Highcharts.numberFormat(this.y,2) +' '+'<%=t :time_mgmt_hours_label%>';
 			}
 		},
 		plotOptions: {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 		tooltip: {
 			formatter: function() {
 				return '<b>'+ this.series.name +'</b><br/>'+
-					Highcharts.numberFormat(this.y, 2) + '<%=t :time_mgmt_hours_label%> ';
+					Highcharts.numberFormat(this.y, 2) + ' '+'<%=t :time_mgmt_hours_label%>';
 			}
 		},
 			series: [
