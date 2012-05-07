@@ -2,10 +2,12 @@ pt-BR:
   #menu
   mc_tasksmgmt_menu_label: "Gerenciamento de Tarefas"
   mc_timemgmt_menu_label: "Gerenciamento de Tempo" 
-
+  mc_humanresourcemgmt_menu_label: "Gerenciamento de Recursos Humanos" 
+ 
   #permissions
   permission_view_home_monitoring_controlling: "Visualizar M&C Gerenciamento de Tarefas"
   permission_view_mc_time_mgmt_project: "Visualizar M&C Gerenciamento de Tempo"  
+  permission_view_mc_human_resource_mgmt_project: "Visualizar M&C Gerenciamento de Recursos Humanos"
   
   monitoring_controlling_title: "Monitoramento & Controle"
   project_module_monitoring_controlling_project: "Monitoramento & Controle por Projeto"
@@ -42,3 +44,12 @@ pt-BR:
   time_mgmt_spent_label: "Executado"
   time_mgmt_hours_label: "hora(s)"
   time_mgmt_error_no_issues_duedate_found_text: "Nenhuma tarefa com data de entrega preenchida foi encontrada."
+  
+  # human resource management
+  hr_mgmt_label_title: "Gerenciamento de Pessoas"
+  hr_unassigned_issue_label: "Não atribuída"
+  hr_columnbar_title_label: "Tarefas por responsáveis"
+  hr_columnbar_yaxis_label: "Quantidade de Tarefas"
+  hr_stackedcolumnbar_title_label: "Responsáveis e suas respectivas tarefas por situação"
+  hr_stackedcolumnbar_yaxis_label: "Quantidade de tarefas"
+  

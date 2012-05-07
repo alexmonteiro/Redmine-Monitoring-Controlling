@@ -1,0 +1,128 @@
+<!--
+ Column Bar chart
+-->
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'containerColumnBar',
+			type: 'column',
+			margin: [ 50, 50, 100, 80]
+		},
+     	credits: {
+ 		  enabled: false
+		},		
+		title: {
+			text: '<%=t :hr_columnbar_title_label%>'
+		},
+		xAxis: {
+			categories: [
+				<% @statusesByAssigneds.group_by(&:assigned_name).each do |s, t| %>
+				 <%= (s.nil? ? t(:hr_unassigned_issue_label) : s).inspect.html_safe%>,
+				<%end%>
+			],
+			labels: {
+				rotation: -45,
+				align: 'right',
+				style: {
+					font: 'normal 13px Verdana, sans-serif'
+				}
+			}
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '<%=t :hr_columnbar_yaxis_label%>'
+			}
+		},
+		legend: {
+			enabled: false
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.x +'</b><br/>'+
+					'<%=t :tasks_label%>: '+ Highcharts.numberFormat(this.y, 0) ;
+			}
+		},
+			series: [{
+			data: [<% @statusesByAssigneds.group_by(&:assigned_name).each do |s, t| %>
+			 		<%= t.map{|a| a.totalAssignedByStatuses.to_i}.sum.inspect.html_safe%>,
+				   <%end%>
+				  ],
+			dataLabels: {
+				enabled: true,
+				rotation: -90,
+				color: '#FFFFFF',
+				align: 'right',
+				x: -3,
+				y: 10,
+				formatter: function() {
+					return this.y;
+				},
+				style: {
+					font: 'normal 13px Verdana, sans-serif'
+				}
+			}
+		}]
+	});
+});
+</script>
+<!--
+ Stacked Bar chart
+-->
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'containerStackedBar',
+			type: 'bar'
+		},
+     	credits: {
+ 		  enabled: false
+		},		
+		title: {
+			text: '<%=t :hr_stackedcolumnbar_title_label%>'
+		},
+		xAxis: {
+			categories: [
+						<% @statusesByAssigneds.group_by(&:assigned_name).each do |s, t| %>
+						 <%= (s.nil? ? t(:hr_unassigned_issue_label) : s).inspect.html_safe%>,
+						<%end%>
+					    ]
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: '<%=t :hr_stackedcolumnbar_yaxis_label%>'
+			}
+		},
+		legend: {
+			backgroundColor: '#FFFFFF',
+			reversed: false
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+
+					this.series.name +': '+ this.y +'';
+			}
+		},
+		plotOptions: {
+			series: {
+				stacking: 'normal'
+			}
+		},
+			series: 
+		[
+		<% @statusesByAssigneds.group_by(&:name).each do |s, t| %>
+		{
+			name: '<%= s.to_s%>',
+			data: <%= t.map{|a| a.totalAssignedByStatuses.to_i}.inspect.html_safe%>
+		}, 
+		<%end%>
+		]
+		
+	});
+});
+</script>
