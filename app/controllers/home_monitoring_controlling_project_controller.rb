@@ -54,37 +54,37 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                  
 
     #get overdue issues for char by by project and subprojects
-    @overdueissueschart = Issue.find_by_sql("select 2 as id, '#{t :overdue_label}' as typeissue, count(1) as totalissuedelayed
+    @overdueissueschart = Issue.find_by_sql(["select 2 as id, '#{t :overdue_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues  
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date <  '#{Date.today}' 
-                                                  and status_id in (select id from issue_statuses where is_closed = FALSE)
+                                                  and status_id in (select id from issue_statuses where is_closed = ?)
                                                   union
                                                   select 1 as id, '#{t :delivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues  
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date < '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = TRUE) 
+                                                  and status_id in (select id from issue_statuses where is_closed = ?) 
                                                   union
                                                   select 3 as id, '#{t :tobedelivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues  
                                                   where project_id in (#{stringSqlProjectsSubPorjects})
                                                   and due_date is not null
                                                   and due_date >= '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = FALSE)
-                                                  order by 1;")    
+                                                  and status_id in (select id from issue_statuses where is_closed = ?)
+                                                  order by 1;", false, true, false])    
 
    
     #get overdueissues by project and subprojects
-    @overdueissues   =   Issue.find_by_sql("select *
+    @overdueissues   =   Issue.find_by_sql(["select *
                                                     from issues  
                                                     where project_id in (#{stringSqlProjectsSubPorjects})
                                                     and due_date is not null
                                                     and due_date < '#{Date.today}' 
-                                                    and status_id in (select id from issue_statuses where is_closed = FALSE)
-                                                    order by due_date;")
+                                                    and status_id in (select id from issue_statuses where is_closed = ? )
+                                                    order by due_date;",false])
                                                     
 
                                                                           
