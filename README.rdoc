@@ -47,7 +47,7 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 * Copie ou clone a o conteúdo do plugin para a pasta de plugins do Redmine: /vendor/plugins/ .
     
     cd /{redmineInstalationDir}/vendor/plugins
-    git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git redmine_monitoring_controlling
+    git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git
     
 * Run db:migrate_plugins to copy the assets.
 * Restart your redmine application.
