@@ -34,7 +34,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
 =begin
     @statusesByAssigneds = Issue.find_by_sql("select assigned_to_id, (select firstname from users where id = assigned_to_id) as assigned_name,
            status_id, name as status,
-         count(1) as totalAssignedByStatuses 
+         count(1) as totalassignedbystatuses 
     from issues, issue_statuses 
     where project_id in (#{stringSqlProjectsSubPorjects})
     and   issue_statuses.id = status_id
@@ -47,7 +47,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
                                        	    (select COUNT(1) 
                                              from issues i 
                                              where i.project_id in (#{stringSqlProjectsSubPorjects})
-                                             and ((i.assigned_to_id = issues.assigned_to_id and i.assigned_to_id is not null)or(i.assigned_to_id is null and issues.assigned_to_id is null)) and i.status_id = issue_statuses.id) as totalAssignedByStatuses
+                                             and ((i.assigned_to_id = issues.assigned_to_id and i.assigned_to_id is not null)or(i.assigned_to_id is null and issues.assigned_to_id is null)) and i.status_id = issue_statuses.id) as totalassignedbystatuses
                                              from issues, issue_statuses  
                                              where project_id in (#{stringSqlProjectsSubPorjects}) 
                                              group by assigned_to_id, assigned_name, issue_statuses.id, issue_statuses.name

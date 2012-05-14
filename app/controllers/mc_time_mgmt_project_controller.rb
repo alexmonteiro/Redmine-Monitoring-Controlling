@@ -37,8 +37,8 @@ class McTimeMgmtProjectController < ApplicationController
                                                                   from issues i 
                                                                   where i.project_id in (#{stringSqlProjectsSubPorjects})
                                                                   and i.due_date is not null 
-                                                                  and i.due_date <= issues.due_date) as sumEstimatedHours,
-                                                                  (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubPorjects}) and created_on <= issues.due_date ) as sumSpentHours
+                                                                  and i.due_date <= issues.due_date) as sumestimatedhours,
+                                                                  (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubPorjects}) and created_on <= issues.due_date ) as sumspenthours
                                          from issues 
                                          where issues.project_id in (#{stringSqlProjectsSubPorjects})
                                          and due_date is not null   

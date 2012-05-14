@@ -53,7 +53,7 @@ $(document).ready(function() {
 			data:
 			[ 
 			 <% @issuesSpentHours.each do | issue | %>
-			  <%=issue.sumEstimatedHours.to_f%>,
+			  <%=issue.sumestimatedhours.to_f%>,
 			 <%end%>
 			]
 		},
@@ -62,7 +62,7 @@ $(document).ready(function() {
 			data:
 			[ 
 			 <% @issuesSpentHours.each do | issue | %>
-			  <%=issue.sumSpentHours.to_f%>,
+			  <%=issue.sumspenthours.to_f%>,
 			 <%end%>
 			]
 		}		
@@ -106,7 +106,7 @@ $(document).ready(function() {
 		},
 			series: [
 			  {name: '<%=t :time_mgmt_estimated_label%>', 
-			   data: [<%= @issuesSpentHours.last.sumEstimatedHours %>],	
+			   data: [<%= @issuesSpentHours.last.sumestimatedhours %>],	
 			   dataLabels: {
 								enabled: true,
 								rotation: 0,
@@ -123,7 +123,7 @@ $(document).ready(function() {
 							}
 			  },
 			  {name: '<%=t :time_mgmt_spent_label %>', 
-			   data: [<%= @issuesSpentHours.last.sumSpentHours %>],	
+			   data: [<%= @issuesSpentHours.last.sumspenthours %>],	
 			   dataLabels: {
 								enabled: true,
 								rotation: 0,
