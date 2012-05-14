@@ -1,5 +1,5 @@
-<!-- 
- Timeline Sum Estimated Hours and Executed Hours by due dates  
+<!--
+ Timeline Sum Estimated Hours and Executed Hours by due dates
 -->
 <script type="text/javascript">
 var chart;
@@ -47,11 +47,11 @@ $(document).ready(function() {
 					areaspline: {
 						fillOpacity: 0.5
 					}
-				},		
+				},
 		series: [ {
 			name: '<%=t :time_mgmt_estimated_label%>',
 			data:
-			[ 
+			[
 			 <% @issuesSpentHours.each do | issue | %>
 			  <%=issue.sumEstimatedHours.to_f%>,
 			 <%end%>
@@ -60,12 +60,12 @@ $(document).ready(function() {
 		{
 			name: '<%=t :time_mgmt_spent_label %>',
 			data:
-			[ 
+			[
 			 <% @issuesSpentHours.each do | issue | %>
 			  <%=issue.sumSpentHours.to_f%>,
 			 <%end%>
 			]
-		}		
+		}
 		]
 	});
 });
@@ -77,7 +77,7 @@ $(document).ready(function() {
 	chart = new Highcharts.Chart({
      	credits: {
  		  enabled: false
-		},		
+		},
 		chart: {
 			renderTo: 'containerColumn',
 			type: 'column'
@@ -105,8 +105,8 @@ $(document).ready(function() {
 			}
 		},
 			series: [
-			  {name: '<%=t :time_mgmt_estimated_label%>', 
-			   data: [<%= @issuesSpentHours.last.sumEstimatedHours %>],	
+			  {name: '<%=t :time_mgmt_estimated_label%>',
+			   data: [<%= @issuesSpentHours.last.sumEstimatedHours %>],
 			   dataLabels: {
 								enabled: true,
 								rotation: 0,
@@ -122,8 +122,8 @@ $(document).ready(function() {
 								}
 							}
 			  },
-			  {name: '<%=t :time_mgmt_spent_label %>', 
-			   data: [<%= @issuesSpentHours.last.sumSpentHours %>],	
+			  {name: '<%=t :time_mgmt_spent_label %>',
+			   data: [<%= @issuesSpentHours.last.sumSpentHours %>],
 			   dataLabels: {
 								enabled: true,
 								rotation: 0,
@@ -138,7 +138,7 @@ $(document).ready(function() {
 									font: 'normal 13px Verdana, sans-serif'
 								}
 							}
-			  }			
+			  }
 			]
 	});
 });
