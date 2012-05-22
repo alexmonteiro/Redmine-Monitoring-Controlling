@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
-  before_filter :getPluginFolderName
-  protect_from_forgery
+  unloadable
+  layout 'base'
   
-  def getPluginFolderName
-      @PluginFolderName = 'redmine_monitoring_controlling' unless @PluginFolderName = File.dirname(__FILE__).gsub(File.join(Rails.root.to_s,'vendor','plugins'),'').split('/')[1]    
-  end
+  #Application Controller doesnt working on Redmine 2.0.0, need to check this issue
   
 end

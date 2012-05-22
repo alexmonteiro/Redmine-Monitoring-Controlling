@@ -21,7 +21,7 @@ $(document).ready(function() {
 		xAxis: {
 			categories: [
 							<% @issuesSpentHours.each do | issue | %>
-							  <%= issue.due_date.strftime(t(:default_date_format)).inspect %>,
+							  <%= issue.due_date.strftime(t(:default_date_format)).inspect.html_safe %>,
 							<%end%>
 						],
 
