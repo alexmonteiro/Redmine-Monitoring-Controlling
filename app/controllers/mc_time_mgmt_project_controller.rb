@@ -1,14 +1,9 @@
 class McTimeMgmtProjectController < ApplicationController
   unloadable
 
-  menu_item :monitoring_controlling_project
-  before_filter :find_optional_project
+  layout 'base'
   before_filter :find_project, :authorize
-  
-
-  def find_project
-    @project = Project.find_by_identifier(params[:id])
-  end
+  menu_item :redmine_monitoring_controlling
 
   def subProjects(id)
      Project.find_by_sql("select * from projects where parent_id = #{id.to_i}")
@@ -47,6 +42,11 @@ class McTimeMgmtProjectController < ApplicationController
                                       
 
   end
-  
-  
+
+  private
+  def find_project
+    @project=Project.find(params[:id])
+  end
+
+
 end

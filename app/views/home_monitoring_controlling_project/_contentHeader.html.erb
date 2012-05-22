@@ -1,10 +1,9 @@
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag 'thickbox.css', :plugin => @PluginFolderName %>
-    <%= stylesheet_link_tag 'monitoringcontrolling.css', :plugin => @PluginFolderName %>
-    <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => @PluginFolderName %>
-    <%= javascript_include_tag 'rails.js', :plugin => @PluginFolderName %>
-    <%= javascript_include_tag 'highcharts.js', :plugin => @PluginFolderName %>
-    <%= javascript_include_tag 'exporting.js', :plugin => @PluginFolderName %>
-    <%= javascript_include_tag 'thickbox.js', :plugin => @PluginFolderName %>
-
+    <%= stylesheet_link_tag 'thickbox', :plugin => 'redmine_monitoring_controlling', :media => "screen" %>
+    <%= stylesheet_link_tag 'monitoringcontrolling', :plugin => 'redmine_monitoring_controlling', :media => "screen"  %>
+    <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => 'redmine_monitoring_controlling'%>
+    <%= javascript_include_tag 'rails.js', :plugin => 'redmine_monitoring_controlling'%>
+    <%= javascript_include_tag 'highcharts.js', :plugin => 'redmine_monitoring_controlling'%>
+    <%= javascript_include_tag 'exporting.js', :plugin => 'redmine_monitoring_controlling'%>
+    <%= javascript_include_tag 'thickbox.js', :plugin => 'redmine_monitoring_controlling'%>
 <% end %>
