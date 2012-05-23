@@ -1,0 +1,54 @@
+fr:
+    #menu
+    mc_tasksmgmt_menu_label: "Gestion des tâches"
+    mc_timemgmt_menu_label: "Gestion du temps"
+    mc_humanresourcemgmt_menu_label: "Gestion des ressources humaines"     
+
+    #permissions
+    permission_view_home_monitoring_controlling: "Voir Gestion des tâches"
+    permission_view_mc_time_mgmt_project: "Voir Gestion du temps"
+    permission_view_mc_human_resource_mgmt_project: "Voir Gestion des ressources humaines "    
+        
+    monitoring_controlling_title: "Statistiques"
+    project_module_monitoring_controlling_project: "Statistiques par Projet"    
+    monitoring_controlling_project: "Statistiques par Projet"
+    statuses_issue_label_title: "Tâches par statut"
+    
+    task_management_label_title: "Gestion des tâches"
+    task_manageable_chart_title: "Tâches gérées"
+    task_manageable_chart_overdue_title: "Tâches en retard"
+    
+    manageable_label: "Géré(s)"
+    unmanageable_label: "Ingérable(s)"
+    manageable_text_tip: "Tâches avec une date de fin."
+    unmanageable_text_tip: "Tâches sans date de fin."
+    
+    tasks_label: "tâche(s)"
+    tasksof_label: "tâche(s) de"    
+    
+    overdue_label: "En retard"
+    overdue_text: "Retard(s)"    
+    delivered_label: "Livré"
+    tobedelivered_label: "En cours de livraison"
+    days_late_text: "jour(s) de retard"
+
+    close_label: "Terminé"
+
+    # date format
+    default_date_format: "%d/%m/%Y"    
+
+    # time management screen
+    time_mgmt_label_title: "Temps estimé et réalisé"
+    time_mgmt_areaspline_yaxis_label: "Temps (heures)"
+    time_mgmt_estimated_label: "Estimé"
+    time_mgmt_spent_label: "Réalisé"
+    time_mgmt_hours_label: "heure(s)"
+    time_mgmt_error_no_issues_duedate_found_text: "Aucune demande avec une date de fin n'a été trouvé ."    
+
+    # human resource management
+    hr_mgmt_label_title: "Gestion des ressources humaines"
+    hr_unassigned_issue_label: "Non assignée"
+    hr_columnbar_title_label: "Demandes assignées"
+    hr_columnbar_yaxis_label: "Nombre de demandes"
+    hr_stackedcolumnbar_title_label: "Assignés et demandes par états"
+    hr_stackedcolumnbar_yaxis_label: "Nombre de demandes"
