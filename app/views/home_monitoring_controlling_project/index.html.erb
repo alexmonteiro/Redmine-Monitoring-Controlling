@@ -21,15 +21,15 @@
 	  <div><%=t :manageable_text_tip%></div>	  <br/>
 	 <%else%>	
 	<b>
-		<a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContent&modal=false" title='<%=issue.typemanagement%>: <%=issue.totalissues%>' class="thickbox"><%=issue.typemanagement%>: <%=issue.totalissues%></a>
+		<a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentUnmanageable&modal=false" title='<%=issue.typemanagement%>: <%=issue.totalissues%>' class="thickbox"><%=issue.typemanagement%>: <%=issue.totalissues%></a>
 	</b>	
 	
 	  <div><%=t :unmanageable_text_tip%></div>
 	
-	 <div id="hiddenModalContent" style="display: none;">
+	 <div id="hiddenModalContentUnmanageable" style="display: none;">
 	 <%@unmanagementissues.each do |unmanagementissue|%>
-	   <%link_name = unmanagementissue.id.to_s+' - '+unmanagementissue.subject%>
-	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, issue %><span style="color: red;"></span>
+	   <%link_unmanagementissue = unmanagementissue.id.to_s+' - '+unmanagementissue.subject%>
+	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_unmanagementissue, unmanagementissue %>
 	   </div>
 	  <%end%>
 	</div>
@@ -44,8 +44,8 @@
   <%@overdueissueschart.each do |issue|%>
    <div>
 	<%if (issue.id == 2)%>
-	 <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContent&modal=false" title='<%=issue.typeissue%>(<%=issue.totalissuedelayed%>)' class="thickbox"><%=issue.typeissue%>: <%=issue.totalissuedelayed%></a></b>
-     <div id="hiddenModalContent" style="display: none;">
+	 <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentOverdue&modal=false" title='<%=issue.typeissue%>(<%=issue.totalissuedelayed%>)' class="thickbox"><%=issue.typeissue%>: <%=issue.totalissuedelayed%></a></b>
+     <div id="hiddenModalContentOverdue" style="display: none;">
 	 <% @overdueissues.each do |delayed| %>
 	   <%link_name = delayed.id.to_s+' - '+delayed.subject%>
 	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %> - <span style="color: red;"><%=(Date.today - delayed.due_date).to_i%> <%=t :days_late_text%></span>

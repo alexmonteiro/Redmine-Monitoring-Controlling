@@ -86,7 +86,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @unmanagementissues = Issue.find_by_sql("select *
                                              from issues where project_id in (#{stringSqlProjectsSubPorjects}) 
                                              and due_date is null
-                                             order by 1")
+                                             order by 1;")
 
 
 
