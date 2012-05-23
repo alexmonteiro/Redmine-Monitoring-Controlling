@@ -15,11 +15,25 @@
  <div id="managementissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
  <div style="float: left;">
   <%@managementissues.each do |issue|%>
-   <div><b><%=issue.typemanagement%>: <%=issue.totalissues%></b>
+   <div>
 	 <%if (issue.id == 1)%>
+ 	  <b><%=issue.typemanagement%>: <%=issue.totalissues%></b>
 	  <div><%=t :manageable_text_tip%></div>	  <br/>
-	 <%else%>
+	 <%else%>	
+	<b>
+		<a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContent&modal=false" title='<%=issue.typemanagement%>: <%=issue.totalissues%>' class="thickbox"><%=issue.typemanagement%>: <%=issue.totalissues%></a>
+	</b>	
+	
 	  <div><%=t :unmanageable_text_tip%></div>
+	
+	 <div id="hiddenModalContent" style="display: none;">
+	 <%@unmanagementissues.each do |unmanagementissue|%>
+	   <%link_name = unmanagementissue.id.to_s+' - '+unmanagementissue.subject%>
+	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, issue %><span style="color: red;"></span>
+	   </div>
+	  <%end%>
+	</div>
+
 	 <%end%>
    </div>
   <%end%>
@@ -34,7 +48,8 @@
      <div id="hiddenModalContent" style="display: none;">
 	 <% @overdueissues.each do |delayed| %>
 	   <%link_name = delayed.id.to_s+' - '+delayed.subject%>
-	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %> - <span style="color: red;"><%=(Date.today - delayed.due_date).to_i%> <%=t :days_late_text%></span></div>
+	   <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_name, delayed %> - <span style="color: red;"><%=(Date.today - delayed.due_date).to_i%> <%=t :days_late_text%></span>
+	   </div>
 	 <%end%>
 	</div>
 	<%else%>

@@ -82,6 +82,12 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                     and status_id in (select id from issue_statuses where is_closed = ? )
                                                     order by due_date;",false])
 
+    #get unmanagement issues by main project
+    @unmanagementissues = Issue.find_by_sql("select *
+                                             from issues where project_id in (#{stringSqlProjectsSubPorjects}) 
+                                             and due_date is null
+                                             order by 1")
+
 
 
 
