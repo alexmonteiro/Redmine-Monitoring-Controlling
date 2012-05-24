@@ -1,0 +1,54 @@
+ru:
+    #menu
+    mc_tasksmgmt_menu_label: "Управление задачами"
+    mc_timemgmt_menu_label: "Управление временными затратами"
+    mc_humanresourcemgmt_menu_label: "Управление человеческими ресурсами"     
+
+    #permissions
+    permission_view_home_monitoring_controlling: "Вид M&C Управление задачами"
+    permission_view_mc_time_mgmt_project: "Вид M&C Управление временными затратами"
+    permission_view_mc_human_resource_mgmt_project: "Вид M&C Управление человеческими ресурсами"    
+
+    monitoring_controlling_title: "Мониторинг & Контроль"
+    project_module_monitoring_controlling_project: "Мониторинг & Контроль by Project"    
+    monitoring_controlling_project: "Мониторинг & Контроль by Projeto"
+    statuses_issue_label_title: "Задачи по статусам"
+
+    task_management_label_title: "Управление задачами"
+    task_manageable_chart_title: "Задачи"
+    task_manageable_chart_overdue_title: "Просроченные задачи"
+
+    manageable_label: "Управляемые"
+    unmanageable_label: "Неуправляемые"
+    manageable_text_tip: "Задачи с датой выполнения."
+    unmanageable_text_tip: "Задачи без даты выполнения."
+
+    tasks_label: "задачи"
+    tasksof_label: "задач(a) из"    
+
+    overdue_label: "Просрочена"
+    overdue_text: "просрочена(-ы)"    
+    delivered_label: "Закрыта"
+    tobedelivered_label: "Решена"
+    days_late_text: "день(дней) задержки"
+
+    close_label: "закрыт"
+
+    # date format
+    default_date_format: "%Y/%m/%d"    
+
+    # time management screen
+    time_mgmt_label_title: "Оценка времени и количество затраченных часов"
+    time_mgmt_areaspline_yaxis_label: "Время (часов)"
+    time_mgmt_estimated_label: "Оценка"
+    time_mgmt_spent_label: "Затраты"
+    time_mgmt_hours_label: "час(ов)"
+    time_mgmt_error_no_issues_duedate_found_text: "Не было найдено ни одного зарегестрированного тикета с датой выполнения."    
+
+    # human resource management
+    hr_mgmt_label_title: "Управление человеческими ресурсами"
+    hr_unassigned_issue_label: "неназначенная"
+    hr_columnbar_title_label: "Распределение задач"
+    hr_columnbar_yaxis_label: "Количество задач"
+    hr_stackedcolumnbar_title_label: "Распределение задач и статусов выполнения по ресурсам"
+    hr_stackedcolumnbar_yaxis_label: "Количество задач"
