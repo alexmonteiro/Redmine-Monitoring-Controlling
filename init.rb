@@ -20,9 +20,5 @@ Redmine::Plugin.register :redmine_monitoring_controlling do
 
   menu :project_menu, :redmine_monitoring_controlling, { :controller => 'home_monitoring_controlling_project', :action => 'index' }, :caption => :monitoring_controlling_title
 
-  activity_provider :home_monitoring_controlling_project
-  activity_provider :mc_time_mgmt_project
-  activity_provider :mc_human_resource_mgmt_project
-
 end
 
