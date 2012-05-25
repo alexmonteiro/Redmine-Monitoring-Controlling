@@ -44,12 +44,12 @@ en:
     time_mgmt_spent_label: "Executed"
     time_mgmt_hours_label: "hour(s)"
     time_mgmt_error_no_issues_duedate_found_text: "No issues with due date resgistered was found."    
+    time_mgmt_version_label_title: "Versions by Hours"
 
     # human resource management
-    hr_mgmt_label_title: "Gerenciamento de Pessoas"
+    hr_mgmt_label_title: "Human Resource Management"
     hr_unassigned_issue_label: "unasigned"
     hr_columnbar_title_label: "Issues by Assignee"
     hr_columnbar_yaxis_label: "Count of Issues"
     hr_stackedcolumnbar_title_label: "Assignee and issues by situation"
     hr_stackedcolumnbar_yaxis_label: "Count of Issues"
-    

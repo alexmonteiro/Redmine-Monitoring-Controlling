@@ -44,6 +44,7 @@ pt-BR:
   time_mgmt_spent_label: "Executado"
   time_mgmt_hours_label: "hora(s)"
   time_mgmt_error_no_issues_duedate_found_text: "Nenhuma tarefa com data de entrega preenchida foi encontrada."
+  time_mgmt_version_label_title: "Versões por Horas"
   
   # human resource management
   hr_mgmt_label_title: "Gerenciamento de Pessoas"
@@ -52,4 +53,3 @@ pt-BR:
   hr_columnbar_yaxis_label: "Quantidade de Tarefas"
   hr_stackedcolumnbar_title_label: "Responsáveis e suas respectivas tarefas por situação"
   hr_stackedcolumnbar_yaxis_label: "Quantidade de tarefas"
-  

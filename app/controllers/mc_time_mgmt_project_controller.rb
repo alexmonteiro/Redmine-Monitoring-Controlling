@@ -39,6 +39,28 @@ class McTimeMgmtProjectController < ApplicationController
                                          and due_date is not null   
                                          group by issues.due_date  
                                         order by due_date;")    
+                                        
+
+    @spentHoursByVersion = Issue.find_by_sql("select versions.name as version, versions.effective_date, sum(issues.estimated_hours) as estimated_hours, 
+                                             (select sum(i.estimated_hours) 
+                                              from issues i
+                                              where i.project_id in (#{stringSqlProjectsSubPorjects})
+                                              and i.fixed_version_id = versions.id
+                                              and i.due_date is not null 
+                                              and i.due_date <= versions.effective_date) as sumestimatedhours,
+                                             (select sum(hours) 
+                                              from issues i, time_entries t
+                                              where i.project_id in (#{stringSqlProjectsSubPorjects})
+                                              and i.project_id = t.project_id
+                                              and i.id = t.issue_id
+                                              and i.fixed_version_id = versions.id
+                                              and t.created_on <= versions.effective_date) as sumspenthours
+                                             from issues, versions 
+                                             where issues.project_id in (#{stringSqlProjectsSubPorjects})
+                                             and issues.fixed_version_id = versions.id
+                                             and due_date <= versions.effective_date
+                                             group by versions.name, versions.effective_date
+                                             order by versions.effective_date;")
                                       
 
   end

@@ -44,6 +44,7 @@ ru:
     time_mgmt_spent_label: "Затраты"
     time_mgmt_hours_label: "час(ов)"
     time_mgmt_error_no_issues_duedate_found_text: "Не было найдено ни одного зарегестрированного тикета с датой выполнения."    
+    time_mgmt_version_label_title: "Versions by Hours"
 
     # human resource management
     hr_mgmt_label_title: "Управление человеческими ресурсами"

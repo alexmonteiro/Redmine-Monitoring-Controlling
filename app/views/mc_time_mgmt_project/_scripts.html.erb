@@ -21,7 +21,7 @@ $(document).ready(function() {
 		xAxis: {
 			categories: [
 							<% @issuesSpentHours.each do | issue | %>
-							  <%= issue.due_date.strftime(t(:default_date_format)).inspect.html_safe %>,
+							  <%= issue.due_date.to_date.strftime(t(:default_date_format)).inspect.html_safe %>,
 							<%end%>
 						],
 
@@ -38,10 +38,17 @@ $(document).ready(function() {
 			min: 0
 		},
 		tooltip: {
-			formatter: function() {
-					return '<b>'+ this.series.name +'</b><br/>'+
-					this.x +' : '+ Highcharts.numberFormat(this.y,2) +' '+'<%=t :time_mgmt_hours_label%>';
-			}
+				formatter: function() {
+					var s;
+					if (this.point.name) { // the pie chart
+						s = ''+ this.point.name +': '+ Highcharts.numberFormat(this.y,2) +' '+'<%=t :time_mgmt_hours_label%>';
+					} else {
+						s = '<b>'+ this.series.name +'</b><br/>'+ this.x +' : '+ Highcharts.numberFormat(this.y,2) +' '+'<%=t :time_mgmt_hours_label%>';
+					}
+					return s;
+				}
+				
+
 		},
 		plotOptions: {
 					areaspline: {
@@ -65,81 +72,153 @@ $(document).ready(function() {
 			  <%=issue.sumspenthours.to_f%>,
 			 <%end%>
 			]
-		}		
+		},
+		
+		{
+					type: 'pie',
+					name: '<%=t :time_mgmt_label_title%>',
+					data: [
+					           {
+									name: '<%=t :time_mgmt_estimated_label%>',
+									y: <%= @issuesSpentHours.last.sumestimatedhours %>,
+									color: '#4572A7'
+								}, {
+									name: '<%=t :time_mgmt_spent_label %>',
+									y: <%= @issuesSpentHours.last.sumspenthours %>,
+									color: '#AA4643' 
+								}
+					],
+					center: [120, 30],
+					size: 80,
+					showInLegend: false,
+					dataLabels: {
+						enabled: true,
+						formatter: function() {
+                            return Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+					}
+					
+		}
+				
 		]
 	});
 });
 </script>
 
+<%
+@spentHoursByVersionEstimated = 0
+@spentHoursByVersionSpent = 0
+@spentHoursByVersion.each do | issue |
+	@spentHoursByVersionEstimated = @spentHoursByVersionEstimated + issue.sumestimatedhours unless issue.sumestimatedhours.nil?
+    @spentHoursByVersionSpent	  = @spentHoursByVersionSpent +issue.sumspenthours unless issue.sumspenthours.nil?
+end
+%>
+
+
 <script type="text/javascript">
-var chart;
-$(document).ready(function() {
-	chart = new Highcharts.Chart({
-     	credits: {
- 		  enabled: false
-		},		
-		chart: {
-			renderTo: 'containerColumn',
-			type: 'column'
-		},
-		title: {
-			text: '<%=t :time_mgmt_label_title%>'
-		},
-		xAxis: {
-			categories: ['<%=t :time_mgmt_estimated_label%>','<%=t :time_mgmt_spent_label %>'],
-			labels: {enabled: false}
-		},
-		yAxis: {
-			min: 0,
-			title: {
-				text: '<%=t :time_mgmt_areaspline_yaxis_label%> ',
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'containerSpentHoursByVersion',
+                type: 'spline'
+            },
+	     	credits: {
+	 		  enabled: false
+			},
+            title: {
+                text: '<%= @project.name%>'
+            },
+            subtitle: {
+                text: '<%=t :time_mgmt_version_label_title%>'
+            },
+            xAxis: {
+                categories: [
+							<% @spentHoursByVersion.each do | issue | %>
+							  <%= (issue.version+' <br/> '+issue.effective_date.to_date.strftime(t(:default_date_format))).inspect.html_safe %>,
+							<%end%>
+							],
+							labels: {
+			                    enabled: true
+			                    }
+            },
+            yAxis: {
+                title: {
+                    text: '<%=t :time_mgmt_areaspline_yaxis_label%>'
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value
+                    }
+                }
+            },
+            tooltip: {
+	            crosshairs: true,
+	            shared: true
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        radius: 4,
+                        lineColor: '#666666',
+                        lineWidth: 1
+                    }
+                }
+            },
+            series: [{
+                name: '<%=t :time_mgmt_estimated_label%>',
+                marker: {
+                    symbol: 'square'
+                },
+
+                data: [
+					   	<% @spentHoursByVersion.each do | issue | %>
+					     <%= issue.sumestimatedhours.to_f.round(2)%>,
+					    <%end%>
+					  ]
+    
+            }, {
+                name: '<%=t :time_mgmt_spent_label %>',
+                marker: {
+                    symbol: 'diamond'
+                },
+                data: [
+				        <% @spentHoursByVersion.each do | issue | %>
+					     <%=issue.sumspenthours.to_f.round(2)%>,
+					    <%end%>
+				      ]
+            },
+			{
+						type: 'pie',
+						name: '<%=t :time_mgmt_label_title%>',
+						data: [
+						           {
+										name: '<%=t :time_mgmt_estimated_label%>',
+										y: <%= @spentHoursByVersionEstimated %>,
+										color: '#4572A7'
+									}, {
+										name: '<%=t :time_mgmt_spent_label %>',
+										y: <%= @spentHoursByVersionSpent %>,
+										color: '#AA4643' 
+									}
+						],
+						center: [120, 30],
+						size: 80,
+						showInLegend: false,
+    					fillOpacity: 2.5,
+						dataLabels: {
+							enabled: true,
+    						distance: 0,
+							formatter: function() {
+	                            return Highcharts.numberFormat(this.y,2) +' '+'<%=t :time_mgmt_hours_label%>'+'<br/>'+ Highcharts.numberFormat(this.percentage,2) +' %';
+	                        }
+						}
+
 			}
-		},
-		legend: {
-			enabled: true
-		},
-		tooltip: {
-			formatter: function() {
-				return '<b>'+ this.series.name +'</b><br/>'+
-					Highcharts.numberFormat(this.y, 2) + ' '+'<%=t :time_mgmt_hours_label%>';
-			}
-		},
-			series: [
-			  {name: '<%=t :time_mgmt_estimated_label%>', 
-			   data: [<%= @issuesSpentHours.last.sumestimatedhours %>],	
-			   dataLabels: {
-								enabled: true,
-								rotation: 0,
-								color: '#FFFFFF',
-								align: 'right',
-								x: -3,
-								y: 13,
-								formatter: function() {
-									return Highcharts.numberFormat(this.y,2);
-								},
-								style: {
-									font: 'normal 13px Verdana, sans-serif'
-								}
-							}
-			  },
-			  {name: '<%=t :time_mgmt_spent_label %>', 
-			   data: [<%= @issuesSpentHours.last.sumspenthours %>],	
-			   dataLabels: {
-								enabled: true,
-								rotation: 0,
-								color: '#FFFFFF',
-								align: 'right',
-								x: -3,
-								y: 13,
-								formatter: function() {
-									return Highcharts.numberFormat(this.y,2);
-								},
-								style: {
-									font: 'normal 13px Verdana, sans-serif'
-								}
-							}
-			  }			
-			]
-	});
+          ]
+        });
+    });
+    
 });
 </script>
