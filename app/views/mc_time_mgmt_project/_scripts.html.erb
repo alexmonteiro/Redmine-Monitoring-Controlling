@@ -109,8 +109,8 @@ $(document).ready(function() {
 @spentHoursByVersionEstimated = 0
 @spentHoursByVersionSpent = 0
 @spentHoursByVersion.each do | issue |
-	@spentHoursByVersionEstimated = @spentHoursByVersionEstimated + issue.sumestimatedhours unless issue.sumestimatedhours.nil?
-    @spentHoursByVersionSpent	  = @spentHoursByVersionSpent +issue.sumspenthours unless issue.sumspenthours.nil?
+	@spentHoursByVersionEstimated = @spentHoursByVersionEstimated + issue.sumestimatedhours.to_f unless issue.sumestimatedhours.nil?
+    @spentHoursByVersionSpent	  = @spentHoursByVersionSpent +issue.sumspenthours.to_f unless issue.sumspenthours.nil?
 end
 %>
 
