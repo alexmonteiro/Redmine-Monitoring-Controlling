@@ -59,7 +59,7 @@ class McTimeMgmtProjectController < ApplicationController
                                              where issues.project_id in (#{stringSqlProjectsSubPorjects})
                                              and issues.fixed_version_id = versions.id
                                              and due_date <= versions.effective_date
-                                             group by versions.name, versions.effective_date
+                                             group by versions.id, versions.name, versions.effective_date
                                              order by versions.effective_date;")
                                       
 
