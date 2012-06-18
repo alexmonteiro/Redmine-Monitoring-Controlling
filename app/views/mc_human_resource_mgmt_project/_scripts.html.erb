@@ -12,7 +12,10 @@ $(document).ready(function() {
 		},
      	credits: {
  		  enabled: false
-		},		
+		},	
+		scrollbar:{
+            enabled: true
+        },
 		title: {
 			text: '<%=t :hr_columnbar_title_label%>'
 		},
@@ -22,6 +25,9 @@ $(document).ready(function() {
 				 <%= (s.nil? ? t(:hr_unassigned_issue_label) : s).inspect.html_safe%>,
 				<%end%>
 			],
+			scrollbar: {
+		        enabled: true
+		    },
 			labels: {
 				rotation: -45,
 				align: 'right',
@@ -81,26 +87,31 @@ $(document).ready(function() {
 		},
      	credits: {
  		  enabled: false
-		},		
+		},	
+		scrollbar:{
+            enabled: true
+        },	
 		title: {
 			text: '<%=t :hr_stackedcolumnbar_title_label%>'
 		},
+
 		xAxis: {
 			categories: [
 						<% @statusesByAssigneds.group_by(&:assigned_name).each do |s, t| %>
 						 <%= (s.nil? ? t(:hr_unassigned_issue_label) : s).inspect.html_safe%>,
 						<%end%>
-					    ]
+					    ], min: 10
 		},
+
 		yAxis: {
-			min: 0,
 			title: {
 				text: '<%=t :hr_stackedcolumnbar_yaxis_label%>'
 			}
 		},
 		legend: {
 			backgroundColor: '#FFFFFF',
-			reversed: false
+			reversed: false,
+			y: -50
 		},
 		tooltip: {
 			formatter: function() {
