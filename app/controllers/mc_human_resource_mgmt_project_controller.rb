@@ -47,7 +47,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
                                              from issues, issue_statuses  
                                              where project_id in (#{stringSqlProjectsSubPorjects}) 
                                              group by assigned_to_id, assigned_name, issue_statuses.id, issue_statuses.name
-                                             order by 2,3;")  
+                                             order by 2,3;")    
   end
 
   private
