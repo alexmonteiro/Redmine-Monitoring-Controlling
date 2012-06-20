@@ -27,15 +27,20 @@ class McTimeMgmtProjectController < ApplicationController
     stringSqlProjectsSubPorjects = return_ids(@project.id).inspect.gsub("[","").gsub("]","")    
 
 
-    @issuesSpentHours = Issue.find_by_sql("select issues.due_date, sum(issues.estimated_hours) as sumestimatedhours,
-                                           (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubPorjects}) and created_on <= issues.due_date ) as sumspenthours
-                                           from issues 
-                                           where issues.project_id in (#{stringSqlProjectsSubPorjects})
-                                           and due_date is not null
-                                           and parent_id is null
-                                           and due_date <= issues.due_date
-                                           group by issues.due_date 
-                                           order by due_date;")    
+    @issuesSpentHours = Issue.find_by_sql("select issues.due_date, sum(issues.estimated_hours) as estimated_hours,
+                                                  (select sum(i.estimated_hours)
+                                                  from issues i
+                                                  where i.project_id in (#{stringSqlProjectsSubPorjects})
+                                                  and i.due_date is not null
+                                                  and i.due_date <= issues.due_date) as sumestimatedhours,
+                                                  (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubPorjects}) and created_on <= issues.due_date ) as sumspenthours
+                                                  from issues
+                                                  where issues.project_id in (#{stringSqlProjectsSubPorjects})
+                                            and due_date is not null
+                                            and due_date <= issues.due_date
+                                            and parent_id is null
+                                            group by issues.due_date
+                                            order by due_date;")    
                                         
 
     @spentHoursByVersion = Issue.find_by_sql("select versions.name as version, versions.effective_date, sum(issues.estimated_hours) as estimated_hours, 
