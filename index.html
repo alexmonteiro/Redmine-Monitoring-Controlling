@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Monitoramento &amp; Controle : Plugin do Redmine que utiliza gráficos para exibir o andamento das tarefas de um projeto." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Monitoramento &amp; Controle</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling">View on GitHub</a>
+
+          <h1 id="project_title">Monitoramento &amp; Controle</h1>
+          <h2 id="project_tagline">Plugin do Redmine que utiliza gráficos para exibir o andamento das tarefas de um projeto.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Monitoramento &amp; Controle (M&amp;C)</h1>
+
+<h6>Redmine Plugin</h6>
+
+<p><a href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling#monitoring--controlling-mc---redmine-plugin">To read this content in english click here</a></p>
+
+<p>O Plugin M&amp;C é utilizado como uma ferramenta gráfica de apoio para facilitar o acompanhamento das atividdes registrada em um projeto redmine.</p>
+
+<h2>Características</h2>
+
+<hr><h3>Versão atual (v0.1.1) - Redmine 1.4.x ou 2.0.x</h3>
+
+<h5>Últimas atualizações</h5>
+
+<ul>
+<li>Barra de progresso do projeto</li>
+<li>Barra de rolagem no gráficos de Gerenciamento de Tempo</li>
+</ul><h5>Gerencimento de Tarefas</h5>
+
+<ul>
+<li>Gráfico das tarefas agrupadas por Situação</li>
+<li>Gráfico apresentando as tarefas gerenciáveis e não gerenciáveis</li>
+<li>Tarefas gerenciáveis são aquelas com a data de entrega estabelecida e que ainda não foram para alguma situação do tipo fechada.</li>
+<li>Tarefas não gerenciáveis são aquelas com a data de entrega não preenchida, ou seja, sem condições de estabelecer um parâmetro de mensuração.</li>
+<li>Gráfico apresentando as tarefas atrasadas dentro do grupo das tarefas gerenciáveis.</li>
+</ul><h5>Gerencimento de Tempo</h5>
+
+<ul>
+<li>Gráfico de linhas com horas planejadas e horas executada até as datas de entrega.</li>
+<li>Gráfico de barra com o total de horas estimadas e o total de horas executadas</li>
+</ul><h5>Gerencimento de Recursos Humanos</h5>
+
+<ul>
+<li>Gráfico de barras com o total de tarefas por responsável.</li>
+<li>Gráfico de barras com o total de tarefas por responsável agrupado por situação.</li>
+</ul><h5>Versões anteriores</h5>
+
+<ul>
+<li>Versão v0.0.3 - para Redmine 1.4.x - <a href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/tags">download</a>
+</li>
+</ul><h2>Demonstração</h2>
+
+<hr><p><img src="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/blob/master/screenshotPt.png?raw=true" alt="Screenshot Pt-BR"><a href="https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/blob/master/screenshotEn.png?raw=true">Screenshot in english version</a></p>
+
+<h2>Instalação</h2>
+
+<hr><h5>Pré-requisitos</h5>
+
+<ol>
+<li>Redmine trunk version em <a href="http://redmine.rubyforge.org/svn">http://redmine.rubyforge.org/svn</a>
+</li>
+</ol><h5>Via GitHub</h5>
+
+<ol>
+<li>
+<p>Copie ou clone a o conteúdo do plugin para a pasta de plugins do Redmine: /vendor/plugins/</p>
+
+<pre><code>git clone http://github.com/alexmonteiro/Redmine-Monitoring-Controlling.git 
+#{RAILS_ROOT}/plugins/redmine_monitoring_controlling
+</code></pre>
+</li>
+<li>
+<p>Execute o comando:</p>
+
+<pre><code>rake db:migrate_plugins
+</code></pre>
+</li>
+<li><p>Reinicie o Redmine e um novo módulo e permissões de acesso estarão disponíveis.</p></li>
+</ol><h5>Arquivo ZIP ou TarGz</h5>
+
+<ol>
+<li>Descompacte o arquivo .zip ou .targz do plugin na pasta de plugins do Redmine: /plugins/redmine_monitoring_controlling</li>
+<li>Reinicie o Redmine e um novo módulo e permissões de acesso estarão disponíveis.</li>
+</ol><h2>Créditos</h2>
+
+<hr><p>O Monitoramento &amp; Controle foi criado baseado em javascript e rubyonrails:</p>
+
+<ul>
+<li>
+<a href="www.highcharts.com">Highcharts</a>: biblioteca javascript para criação de gráficos;</li>
+<li>
+<a href="http://railscasts.com/">Railscasts</a> episódio <a href="http://railscasts.com/episodes/223-charts">223</a>: aprenda como montar gráficos em rails utilizando Highcharts.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Monitoramento &amp; Controle maintained by <a href="https://github.com/alexmonteiro">alexmonteiro</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-30876427-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
