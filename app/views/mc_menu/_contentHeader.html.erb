@@ -1,9 +1,5 @@
 <% 
-if Rails.version.to_f >= 3.0
-@PluginFolderName = 'redmine_monitoring_controlling' unless @PluginFolderName = File.dirname(__FILE__).gsub(File.join(Rails.root.to_s,'plugins'),'').split('/')[1] 
-else
-@PluginFolderName = 'redmine_monitoring_controlling' unless @PluginFolderName = File.dirname(__FILE__).gsub(File.join(Rails.root.to_s,'vendor','plugins'),'').split('/')[1] 	
-end
+@PluginFolderName = McTools.new.returnPluginFolderName
 content_for :header_tags do %>
     <%= stylesheet_link_tag 'thickbox', :plugin => @PluginFolderName, :media => "screen" %>
     <%= stylesheet_link_tag 'monitoringcontrolling', :plugin => @PluginFolderName, :media => "screen"  %>

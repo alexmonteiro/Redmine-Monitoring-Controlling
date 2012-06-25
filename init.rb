@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_monitoring_controlling do
   author 'Alexander Monteiro'
   description "Este plugin foi criado para auxiliar no Monitoramento e Controle dos projetos no redmine através de uma visualização gráfica das tarefas e sua execução.\n
                This plugin is a graphic tool to Monitoring and Controlling projects on redmine."
-  version '0.1.0'
+  version '0.1.1'
   url 'http://alexmonteiro.github.com/redmine_monitoring_controlling/'
   author_url 'http://www.alexandermonteiro.com.br'
   

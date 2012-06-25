@@ -1,10 +1,10 @@
-<%= render :partial => '/home_monitoring_controlling_project/contentHeader' %>
+<%= render :partial => '/mc_menu/contentHeader' %>
 
 <% if @issuesSpentHours.count > 0  %>
  <%= render :partial => 'scripts' %>
 <%end%>
 
-<%= render :partial => '/home_monitoring_controlling_project/mcmenu' %>
+<%= render :partial => '/mc_menu/mcmenu' %>
 
 <h2><%=t :time_mgmt_label_title %></h2>
 <% if @issuesSpentHours.count == 0  %>

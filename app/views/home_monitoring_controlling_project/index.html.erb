@@ -1,12 +1,13 @@
-<%= render :partial => 'contentHeader' %>
+<%= render :partial => '/mc_menu/contentHeader' %>
 
 <%= render :partial => 'index' %>
 
-<%= render :partial => 'mcmenu' %>
+<%= render :partial => '/mc_menu/mcmenu' %>
 
 <div style="float: left;">
-<h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%> </h2>
- <div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
+<h2 style = "width:800px;"><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%></h2>
+	
+<div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
  <div id="containerColumn" style="min-width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
 </div>
 
@@ -37,7 +38,7 @@
 	 <%end%>
    </div>
   <%end%>
- </div>
+</div>
 
  <div id="delayedissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
  <div style="float: left;">
@@ -58,6 +59,9 @@
    </div>
   <%end%>
  </div>
+
+
+
 <p id="notice"><%= notice %></p>
 </div>
 	

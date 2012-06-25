@@ -1,0 +1,96 @@
+<% tools = McTools.new%>
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'progressbar',
+			type: 'bar',
+			height: 25,
+			margin: [-9, 0, -9, 0],
+			backgroundColor: 'transparent'
+		},
+		exporting: {
+			  enabled: false
+		},
+		credits: {
+ 		  enabled: false
+		},
+		title: {
+			text: ''
+		},
+		xAxis: {
+			categories: ['Progress'],
+			gridLineWidth : 0,
+		    gridLineColor : '#FFFFFF',	
+			lineWidth: 0,
+			minorGridLineWidth: 0,
+			lineColor: 'transparent',
+			minorTickLength: 0,
+ 		    tickLength: 0,
+			labels : {
+				enabled: false
+			}
+		},
+		yAxis: {
+			title: {
+				text: ''
+			},
+			gridLineWidth : 0,
+			gridLineColor : '#FFFFFF',
+			lineWidth: 0,
+			minorGridLineWidth: 0,
+			lineColor: 'transparent',			
+			minorTickLength: 0,
+ 		    tickLength: 0,
+			labels : {
+				enabled: false
+			}
+		},
+		legend: {
+			backgroundColor: '#FFFFFF',
+			reversed: true,
+			enabled: false
+		},
+		tooltip: {
+			formatter: function() {
+				return ''+
+					this.series.name +': '+ this.y + ' <%=t :tasks_label%>';
+			},
+			style: {
+				color: '#333333',
+				fontSize: '8pt',
+				padding: '2px'
+			}
+		},
+		plotOptions: {
+			series: {
+				stacking: 'percent',
+				dataLabels: {
+					enabled: true,
+					align : 'center',
+					color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+					formatter: function() {
+                        return Highcharts.numberFormat(this.percentage,2) +' %';
+                    }
+				}
+			}	,
+		        bar: {
+		            borderWidth:0,
+		            shadow: false,
+		            borderRadius: 3
+		        }
+		},
+			series: [{
+			name: '<%=t :tobedelivered_label%>',
+			data: [<%=tools.returnTotalOfOpenTasks(params[:id])%>],
+			color: '#A0A0A0'
+		},
+		{
+		name: '<%=t :delivered_label%>',
+		data: [<%=tools.returnTotalOfClosedTasks(params[:id])%>],
+		color: '#006600'
+	}]
+	});
+});
+</script>
