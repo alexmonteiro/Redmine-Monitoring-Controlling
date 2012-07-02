@@ -13,6 +13,7 @@ pt-BR:
   project_module_monitoring_controlling_project: "Monitoramento & Controle por Projeto"
   monitoring_controlling_project: "Monitoramento & Controle por Projeto"
   statuses_issue_label_title: "Situação das tarefas"
+  categories_issue_label_title: "Tarefas por Tipo"
 
   task_management_label_title: "Gerenciamento das Tarefas"
   task_manageable_chart_title: "Tarefas Gerenciáveis"

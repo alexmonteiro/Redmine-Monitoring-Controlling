@@ -13,6 +13,7 @@ ru:
     project_module_monitoring_controlling_project: "Мониторинг & Контроль by Project"    
     monitoring_controlling_project: "Мониторинг & Контроль by Projeto"
     statuses_issue_label_title: "Задачи по статусам"
+    categories_issue_label_title: "Tasks by Category"    
 
     task_management_label_title: "Управление задачами"
     task_manageable_chart_title: "Задачи"

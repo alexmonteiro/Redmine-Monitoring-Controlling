@@ -13,6 +13,7 @@ en:
     project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"    
     monitoring_controlling_project: "Monitoring & Controlling by Projeto"
     statuses_issue_label_title: "Tasks by Statuses"
+    categories_issue_label_title: "Tasks by Category"
     
     task_management_label_title: "Tasks Management"
     task_manageable_chart_title: "Manageable Tasks"

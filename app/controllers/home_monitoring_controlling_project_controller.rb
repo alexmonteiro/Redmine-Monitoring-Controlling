@@ -17,6 +17,30 @@ class HomeMonitoringControllingProjectController < ApplicationController
     
     @projects_subprojects = Project.find_by_sql("select * from projects where id in (#{stringSqlProjectsSubProjects});")
     @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
+    
+    #get count of issues by category
+    @issuesbycategory = IssueStatus.find_by_sql("select name, position, count(*) as totalbycategory,
+                                                (select count(*) 
+                                                 from issues 
+                                                 where project_id in (#{stringSqlProjectsSubProjects})
+                                                 and issues.tracker_id = trackers.id
+                                                 and status_id in (select id from issue_statuses where is_closed = true)
+
+                                                ) as totaldone,
+                                                (select count(*) 
+                                                 from issues 
+                                                 where project_id in (#{stringSqlProjectsSubProjects})
+                                                 and issues.tracker_id = trackers.id
+                                                 and status_id in (select id from issue_statuses where is_closed = false)
+
+                                                ) as totalundone
+                                                from trackers, projects_trackers, issues
+                                                where projects_trackers.tracker_id = trackers.id 
+                                                and projects_trackers.project_id = issues.project_id
+                                                and issues.tracker_id = trackers.id
+                                                and projects_trackers.project_id in (#{stringSqlProjectsSubProjects}) 
+                                                group by trackers.id, name, position
+                                                order by 2;")
 
 
     #get statuses by main project and subprojects

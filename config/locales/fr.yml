@@ -13,6 +13,7 @@ fr:
     project_module_monitoring_controlling_project: "Statistiques par Projet"    
     monitoring_controlling_project: "Statistiques par Projet"
     statuses_issue_label_title: "Tâches par statut"
+    categories_issue_label_title: "Tasks by Category"    
     
     task_management_label_title: "Gestion des tâches"
     task_manageable_chart_title: "Tâches gérées"

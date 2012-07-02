@@ -20,12 +20,12 @@ class McTimeMgmtProjectController < ApplicationController
                                                   (select sum(i.estimated_hours)
                                                   from issues i
                                                   where i.project_id in (#{stringSqlProjectsSubProjects})
-                                                  and i.due_date is not null
+                                                  /*and i.due_date is not null*/
                                                   and i.due_date <= issues.due_date) as sumestimatedhours,
                                                   (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubProjects}) and created_on <= issues.due_date ) as sumspenthours
                                                   from issues
                                                   where issues.project_id in (#{stringSqlProjectsSubProjects})
-                                            and due_date is not null
+                                            /*and due_date is not null*/
                                             and due_date <= issues.due_date
                                             and parent_id is null
                                             group by issues.due_date
@@ -37,7 +37,7 @@ class McTimeMgmtProjectController < ApplicationController
                                               from issues i
                                               where i.project_id in (#{stringSqlProjectsSubProjects})
                                               and i.fixed_version_id = versions.id
-                                              and i.due_date is not null
+                                              /*and i.due_date is not null*/
                                               and i.parent_id is null 
                                               and i.due_date <= versions.effective_date) as sumestimatedhours,
                                              (select sum(hours) 

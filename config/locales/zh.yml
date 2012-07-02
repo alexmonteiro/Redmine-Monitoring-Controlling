@@ -13,6 +13,7 @@ zh:
    project_module_monitoring_controlling_project: "项目监控"
    monitoring_controlling_project: "项目监控"
    statuses_issue_label_title: "任务情况（按状态）"
+   categories_issue_label_title: "Tasks by Category"   
 
    task_management_label_title: "任务管理"
    task_manageable_chart_title: "可控任务分布图"

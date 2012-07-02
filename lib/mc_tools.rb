@@ -25,7 +25,7 @@ class McTools
       array.push(return_ids(project.id))
      end
       
-     return array.inspect.gsub("[","").gsub("]","") 
+     return array.inspect.gsub("[","").gsub("]","").gsub("\\","").gsub("\"","")
   end
 
   # return total of tasks with closed flag false

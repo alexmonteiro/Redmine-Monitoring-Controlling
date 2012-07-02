@@ -5,15 +5,21 @@
 <%= render :partial => '/mc_menu/mcmenu' %>
 
 <div style="float: left;">
-<h2 style = "width:800px;"><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%></h2>
+<h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%></h2>
 	
 <div id="container" style="width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
  <div id="containerColumn" style="min-width: 650px; height: 400px; margin: 0 auto; float: left;"></div>
 </div>
 
 <div style="float: left;">
+	<h2><%=t :categories_issue_label_title %></h2>
+ <div id="categoryPie" style="min-width: 650; height: 400px; margin: 0 auto; float: left;"></div>
+ <div id="categoryStackedColumn" style="margin: 0 auto; float: left;"></div>
+</div>
+
+<div style="float: left;">
 <h2><%=t :task_management_label_title %></h2>
- <div id="managementissues" style="min-width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
+ <div id="managementissues" style="width: 300px; height: 300px; margin: 0 auto; float: left;"></div>
  <div style="float: left;">
   <%@managementissues.each do |issue|%>
    <div>
@@ -59,7 +65,6 @@
    </div>
   <%end%>
  </div>
-
 
 
 <p id="notice"><%= notice %></p>
