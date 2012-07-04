@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'redmine'
 
 Redmine::Plugin.register :redmine_monitoring_controlling do
