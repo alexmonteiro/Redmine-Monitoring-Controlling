@@ -6,18 +6,15 @@
 
 <%= render :partial => '/mc_menu/mcmenu' %>
 
-<h2><%=t :time_mgmt_label_title %></h2>
-<% if @issuesSpentHours.count == 0  %>
-<div id="errorExplanation"><%=t :time_mgmt_error_no_issues_duedate_found_text %></div>
-<%end%>
-
-<div id="containerSpentHours" style="min-width: 600px; height: 400px; margin: 0 auto;"></div>
-
-<div id="containerSpentHoursByVersion" style="min-width: 650px; height: 500px; margin: 0 auto;"></div>
-
+<div style="float: left;">
+  <h2><%=t :time_mgmt_label_title %></h2>
+  <% if @issuesSpentHours.count == 0  %>
+    <div id="errorExplanation"><%=t :time_mgmt_error_no_issues_duedate_found_text %></div>
+  <%end%>
+  <div id="containerSpentHours" style="min-width: 600px; height: 400px; margin: 0 auto;"></div>
+  <div id="containerSpentHoursByVersion" style="min-width: 650px; height: 500px; margin: 0 auto;"></div>
+</div>
 
 <div>
 <p id="notice"><%= notice %></p>
 </div>
-
-
