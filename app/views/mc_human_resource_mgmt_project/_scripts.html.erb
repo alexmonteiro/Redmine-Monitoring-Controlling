@@ -100,7 +100,7 @@ $(document).ready(function() {
 						<% @statusesByAssigneds.group_by(&:assigned_to_id).each do |s, t| %>
 						 <%= (s.nil? ? t(:hr_unassigned_issue_label) : User.find(s).firstname+" "+User.find(s).lastname[0,1]+".").inspect.html_safe%>,
 						<%end%>
-					    ], min: 10
+					    ]
 		},
 
 		yAxis: {
