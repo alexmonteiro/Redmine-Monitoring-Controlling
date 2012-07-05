@@ -39,7 +39,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                 and projects_trackers.project_id = issues.project_id
                                                 and issues.tracker_id = trackers.id
                                                 and projects_trackers.project_id in (#{stringSqlProjectsSubProjects}) 
-                                                group by trackers.id, name, position
+                                                group by trackers.id, trackers.name, trackers.position
                                                 order by 2;")
 
 
