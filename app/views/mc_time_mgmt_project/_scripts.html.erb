@@ -80,11 +80,11 @@ $(document).ready(function() {
 					data: [
 					           {
 									name: '<%=t :time_mgmt_estimated_label%>',
-									y: <%= @issuesSpentHours.last.sumestimatedhours %>,
+									y: <%= @issuesSpentHours.last.sumestimatedhours.to_f %>,
 									color: '#4572A7'
 								}, {
 									name: '<%=t :time_mgmt_spent_label %>',
-									y: <%= @issuesSpentHours.last.sumspenthours %>,
+									y: <%= @issuesSpentHours.last.sumspenthours.to_f %>,
 									color: '#AA4643' 
 								}
 					],
@@ -195,11 +195,11 @@ $(function () {
 						data: [
 						           {
 										name: '<%=t :time_mgmt_estimated_label%>',
-										y: <%= @spentHoursByVersionEstimated %>,
+										y: <%= @spentHoursByVersionEstimated.to_f %>,
 										color: '#4572A7'
 									}, {
 										name: '<%=t :time_mgmt_spent_label %>',
-										y: <%= @spentHoursByVersionSpent %>,
+										y: <%= @spentHoursByVersionSpent.to_f %>,
 										color: '#AA4643' 
 									}
 						],
