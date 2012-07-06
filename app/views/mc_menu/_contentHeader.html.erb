@@ -1,12 +1,11 @@
-<% 
-@PluginFolderName = McTools.new.returnPluginFolderName
-content_for :header_tags do %>
+<% @PluginFolderName = McTools.new.returnPluginFolderName %>
+<% content_for :header_tags do %>
     <%= stylesheet_link_tag 'thickbox', :plugin => @PluginFolderName, :media => "screen" %>
-    <%= stylesheet_link_tag 'monitoringcontrolling', :plugin => @PluginFolderName, :media => "screen"  %>
-    <%= javascript_include_tag 'jquery-1.4.2.min.js', :plugin => @PluginFolderName%>
-    <%= javascript_include_tag 'rails.js', :plugin => @PluginFolderName%>
-    <%= javascript_include_tag 'highcharts.js', :plugin => @PluginFolderName%>
+    <%= stylesheet_link_tag 'monitoringcontrolling', :plugin => @PluginFolderName, :media => "screen" %>
+    <%= javascript_include_tag 'jquery.min.js', :plugin => @PluginFolderName%>
+    <%= javascript_include_tag 'rails', :plugin => @PluginFolderName %>
+    <%= javascript_include_tag 'highcharts', :plugin => @PluginFolderName %>
     <%= javascript_include_tag 'highstock.js', :plugin => @PluginFolderName%>
-    <%= javascript_include_tag 'exporting.js', :plugin => @PluginFolderName%>
-    <%= javascript_include_tag 'thickbox.js', :plugin => @PluginFolderName%>
+    <%= javascript_include_tag 'exporting', :plugin => @PluginFolderName %>
+    <%= javascript_include_tag 'thickbox', :plugin => @PluginFolderName %>
 <% end %>
