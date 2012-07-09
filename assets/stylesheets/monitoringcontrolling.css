@@ -39,3 +39,39 @@
     color: #6D6D6D;
     border-bottom:3px solid #0066FF;
 }
+
+div.central_charts {
+    margin-top: 40px;
+}
+
+div.central_chart {
+    min-width: 520px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+div.double_charts {
+    margin-top: 5px;
+    float: left;
+}
+
+div.double_chart {
+    min-width: 520px;
+    height: 400px;
+    margin: 0 auto;
+    float: left;
+}
+
+div.mini_chart {
+    min-width: 350px;
+    height: 400px;
+    margin: 0 auto;
+    float: left;
+}
+
+div.mini_chart_note {
+    min-width: 150px;
+    height: 400px;
+    margin: 0 auto;
+    float: left;
+}
