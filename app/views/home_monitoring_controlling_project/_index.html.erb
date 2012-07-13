@@ -80,27 +80,35 @@ $(document).ready(function() {
 					'<%=t :tasks_label%> '+ Highcharts.numberFormat(this.y, 0);
 			}
 		},
-			series: [
-			 <%@statuses.each do |cat|%>
-			  {name: <%=cat.name.inspect.html_safe%>, 
-			   data: [<%=cat.totalissues%>],	
-			   dataLabels: {
-								enabled: true,
-								rotation: -90,
-								color: '#FFFFFF',
-								align: 'right',
-								x: -3,
-								y: 10,
-								formatter: function() {
-									return this.y;
-								},
-								style: {
-									font: 'normal 13px Verdana, sans-serif'
-								}
-							}
-			  }<%if !(@statuses.last == cat)%>,<%end%>
-			 <%end%>
-			]
+        series: [
+                <%@statuses.each do |cat|%>
+                {
+                        name: <%=cat.name.inspect.html_safe%>,
+                        data: [<%=cat.totalissues%>],
+                        cursor: 'pointer',
+                        events: {
+                                // Default action for (left) clicking the data
+                                click: function(point) {
+                                        window.open('/projects/<%=@project.identifier%>/issues?set_filter=1&f%5B%5D=status_id&op%5Bstatus_id%5D=%3D&v%5Bstatus_id%5D%5B%5D=<%=cat.id%>&f%5B%5D=&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=author&c%5B%5D=assigned_to&c%5B%5D=start_date&c%5B%5D=due_date&c%5B%5D=spent_hours&c%5B%5D=done_ratio&group_by=');
+                                }
+                        },
+                   dataLabels: {
+                                                        enabled: true,
+                                                        rotation: -90,
+                                                        color: '#FFFFFF',
+                                                        align: 'right',
+                                                        x: -3,
+                                                        y: 10,
+                                                        formatter: function() {
+                                                                return this.y;
+                                                        },
+                                                        style: {
+                                                                font: 'normal 13px Verdana, sans-serif'
+                                                        }
+                                                }
+                  }<%if !(@statuses.last == cat)%>,<%end%>
+                 <%end%>
+                ]
 	});
 });
 </script>
