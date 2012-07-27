@@ -36,6 +36,19 @@ $(document).ready(function() {
 				}
 			}
 		},
+        plotOptions: {
+                series: {
+                        cursor: 'pointer',
+                        events: {
+                                click: function(event) {
+                                        // Log to console
+                                        // console.log(event.point);
+                                        // console.log(event.point.config.user_id);
+                                        window.open('/projects/<%=@project.identifier%>/issues?set_filter=1&f%5B%5D=status_id&op%5Bstatus_id%5D=*&f%5B%5D=assigned_to_id&op%5Bassigned_to_id%5D=%3D&v%5Bassigned_to_id%5D%5B%5D=' + event.point.config.user_id + '&f%5B%5D=&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=author&c%5B%5D=assigned_to&c%5B%5D=start_date&c%5B%5D=due_date&c%5B%5D=spent_hours&c%5B%5D=done_ratio&group_by=');
+                                }
+                        }
+                }
+        },
 		yAxis: {
 			min: 0,
 			title: {
@@ -51,26 +64,26 @@ $(document).ready(function() {
 					'<%=t :tasks_label%>: '+ Highcharts.numberFormat(this.y, 0) ;
 			}
 		},
-			series: [{
-			data: [<% @statusesByAssigneds.group_by(&:assigned_to_id).each do |s, t| %>
-			 		<%= t.map{|a| a.totalassignedbystatuses.to_i}.sum.inspect.html_safe%>,
-				   <%end%>
-				  ],
-			dataLabels: {
-				enabled: true,
-				rotation: -90,
-				color: '#FFFFFF',
-				align: 'right',
-				x: -3,
-				y: 10,
-				formatter: function() {
-					return this.y;
-				},
-				style: {
-					font: 'normal 13px Verdana, sans-serif'
-				}
-			}
-		}]
+        series: [{
+                data: [<% @statusesByAssigneds.group_by(&:assigned_to_id).each do |s, t| %>
+                        {y: <%= t.map{|a| a.totalassignedbystatuses.to_i}.sum.inspect.html_safe%>, user_id: <%= (s.nil? ? 0 : s) %>},
+                        <%end%>
+                        ],
+                dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        x: -3,
+                        y: 10,
+                        formatter: function() {
+                                return this.y;
+                        },
+                        style: {
+                                font: 'normal 13px Verdana, sans-serif'
+                        }
+                }
+        }]
 	});
 });
 </script>
@@ -119,17 +132,28 @@ $(document).ready(function() {
 					this.series.name +': '+ this.y +'';
 			}
 		},
-		plotOptions: {
-			series: {
-				stacking: 'normal'
-			}
-		},
+        plotOptions: {
+                series: {
+                        cursor: 'pointer',
+                        events: {
+                                click: function(event) {
+                                        // Log to console
+                                        // console.log(event.point);
+                                        // console.log(event.point.config.user_id);
+                                        window.open('/projects/<%=@project.identifier%>/issues?set_filter=1&f%5B%5D=status_id&op%5Bstatus_id%5D=%3D&v%5Bstatus_id%5D%5B%5D=' + event.point.config.issue_status_id + '&f%5B%5D=assigned_to_id&op%5Bassigned_to_id%5D=%3D&v%5Bassigned_to_id%5D%5B%5D=' + event.point.config.user_id + '&f%5B%5D=&c%5B%5D=status&c%5B%5D=priority&c%5B%5D=subject&c%5B%5D=author&c%5B%5D=assigned_to&c%5B%5D=start_date&c%5B%5D=due_date&c%5B%5D=spent_hours&c%5B%5D=done_ratio&group_by=');
+                                }
+                        },
+                        stacking: 'normal'
+                }
+        },
 			series: 
 		[
 		<% @statusesByAssigneds.group_by(&:id).each do |s, t| %>
 		{
 			name: '<%= IssueStatus.find(s).name%>',
-			data: <%= t.map{|a| a.totalassignedbystatuses.to_i}.inspect.html_safe%>
+            data: [
+              <%= t.map {|a| "{y: " + a.totalassignedbystatuses.to_i.to_s + ", user_id: " + (a.assigned_to_id.nil? ? "0" : a.assigned_to_id.to_s) + ", issue_status_id: " + a.id.to_s + "},"} %>
+            ]
 		}, 
 		<%end%>
 		]
