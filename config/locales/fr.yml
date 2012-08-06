@@ -13,7 +13,7 @@ fr:
     project_module_monitoring_controlling_project: "Statistiques par Projet"    
     monitoring_controlling_project: "Statistiques par Projet"
     statuses_issue_label_title: "Tâches par statut"
-    categories_issue_label_title: "Tasks by Category"    
+    categories_issue_label_title: "Tâches par catégorie"    
     
     task_management_label_title: "Gestion des tâches"
     task_manageable_chart_title: "Tâches gérées"
@@ -44,7 +44,7 @@ fr:
     time_mgmt_estimated_label: "Estimé"
     time_mgmt_spent_label: "Réalisé"
     time_mgmt_hours_label: "heure(s)"
-    time_mgmt_error_no_issues_duedate_found_text: "Aucune demande avec une date de fin n'a été trouvé ."    
+    time_mgmt_error_no_issues_duedate_found_text: "Aucune demande avec une date de fin n'a été trouvée."    
     time_mgmt_version_label_title: "Versions by Hours"
 
     # human resource management
