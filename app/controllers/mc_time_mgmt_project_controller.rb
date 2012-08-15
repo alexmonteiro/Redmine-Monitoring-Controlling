@@ -21,8 +21,8 @@ class McTimeMgmtProjectController < ApplicationController
                                                   from issues i
                                                   where i.project_id in (#{stringSqlProjectsSubProjects})
                                                   /*and i.due_date is not null*/
-                                                  and i.due_date <= issues.due_date) as sumestimatedhours,
-                                                  (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubProjects}) and created_on <= issues.due_date ) as sumspenthours
+                                                  and i.due_date <= issues.due_date and i.parent_id is null) as sumestimatedhours,
+                                                  (select sum(hours) from time_entries where project_id in (#{stringSqlProjectsSubProjects}) and spent_on <= issues.due_date ) as sumspenthours
                                                   from issues
                                                   where issues.project_id in (#{stringSqlProjectsSubProjects})
                                             /*and due_date is not null*/
@@ -44,10 +44,9 @@ class McTimeMgmtProjectController < ApplicationController
                                               from issues i, time_entries t
                                               where i.project_id in (#{stringSqlProjectsSubProjects})
                                               and i.project_id = t.project_id
-                                              and i.parent_id is null
                                               and i.id = t.issue_id
                                               and i.fixed_version_id = versions.id
-                                              and t.created_on <= versions.effective_date) as sumspenthours
+                                              and t.spent_on <= versions.effective_date) as sumspenthours
                                              from issues, versions 
                                              where issues.project_id in (#{stringSqlProjectsSubProjects})
                                              and issues.parent_id is null
