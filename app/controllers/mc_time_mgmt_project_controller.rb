@@ -44,7 +44,6 @@ class McTimeMgmtProjectController < ApplicationController
                                               from issues i, time_entries t
                                               where i.project_id in (#{stringSqlProjectsSubProjects})
                                               and i.project_id = t.project_id
-                                              and i.parent_id is null
                                               and i.id = t.issue_id
                                               and i.fixed_version_id = versions.id
                                               and t.spent_on <= versions.effective_date) as sumspenthours
