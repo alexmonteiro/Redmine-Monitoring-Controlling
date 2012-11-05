@@ -15,7 +15,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
     #get projects and sub projects
     stringSqlProjectsSubProjects = tool.return_ids(@project.id)    
 
-    @statusesByAssigneds = Issue.find_by_sql("select assigned_to_id, (select firstname from users where id = assigned_to_id) as assigned_name,
+    @statusesByAssigneds = Issue.find_by_sql("select assigned_to_id, (select firstname from users where id = assigned_to_id) as assigned_first_name, (select lastname from users where id = assigned_to_id) as assigned_last_name,
                                               issue_statuses.id, issue_statuses.name, 
                                          	    (select COUNT(1) 
                                                from issues i 
@@ -23,7 +23,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
                                                and ((i.assigned_to_id = issues.assigned_to_id and i.assigned_to_id is not null)or(i.assigned_to_id is null and issues.assigned_to_id is null)) and i.status_id = issue_statuses.id) as totalassignedbystatuses
                                                from issues, issue_statuses  
                                                where project_id in (#{stringSqlProjectsSubProjects}) 
-                                               group by assigned_to_id, assigned_name, issue_statuses.id, issue_statuses.name
+                                               group by assigned_to_id, assigned_first_name, assigned_last_name, issue_statuses.id, issue_statuses.name
                                                order by 2,3;")    
   end
 
