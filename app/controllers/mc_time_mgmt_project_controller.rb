@@ -14,6 +14,9 @@ class McTimeMgmtProjectController < ApplicationController
 
     #get projects and sub projects
     stringSqlProjectsSubProjects = tool.return_ids(@project.id)   
+    
+    # total issues from the project and subprojects
+    @totalIssues = Issue.where(:project_id => [stringSqlProjectsSubProjects]).count
 
 
     @issuesSpentHours = Issue.find_by_sql("select issues.due_date, sum(issues.estimated_hours) as estimated_hours,

@@ -5,11 +5,16 @@
 <%= render :partial => '/mc_menu/mcmenu' %>
 
 <div class="central_charts">
-  <h2><%=t :hr_mgmt_label_title %></h2>
-  <div id="containerColumnBar" class="central_chart"></div>
-  <div id="containerStackedBar" class="central_chart"></div>
-</div>
+ <% if @totalIssues > 0  %>	
+	  <h2><%=t :hr_mgmt_label_title %></h2>
+	  <div id="containerColumnBar" class="central_chart"></div>
+	  <div id="containerStackedBar" class="central_chart"></div>
+	</div>
 
-<div>
-<p id="notice"><%= notice %></p>
+	<div>
+	<p id="notice"><%= notice %></p>
+
+ <% else %>
+  <div id="errorExplanation"><%=t :time_mgmt_error_no_issues_found_text %></div>
+ <%end%>	
 </div>

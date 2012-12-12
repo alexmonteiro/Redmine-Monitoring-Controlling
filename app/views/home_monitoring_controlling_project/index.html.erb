@@ -1,71 +1,83 @@
 <%= render :partial => '/mc_menu/contentHeader' %>
 
-<%= render :partial => 'index' %>
+<% if @totalIssues > 0  %>
+ <%= render :partial => 'index' %>
+<%end%>
+
 
 <%= render :partial => '/mc_menu/mcmenu' %>
 
-<div class="double_charts">
- <h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%></h2>
+<div class="central_charts">
+   <% if @totalIssues > 0  %>
+	 <h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%></h2>
 
- <div id="container" class="double_chart"></div>
- <div id="containerColumn" class="double_chart"></div>
+
+
+	 <div id="container" class="double_chart"></div>
+	 <div id="containerColumn" class="double_chart"></div>
+	</div>
+
+	<div class="double_charts">
+	 <h2><%= t :categories_issue_label_title %></h2>
+
+	 <div id="categoryPie" class="double_chart"></div>
+	 <div id="categoryStackedColumn" class="double_chart"></div>
+	</div>
+
+	<div class="double_charts">
+	 <h2><%= t :task_management_label_title %></h2>
+
+	 <div class="double_chart">
+	 <div id="managementissues" class="mini_chart"></div>
+	 <div class="mini_note">
+	  <% @managementissues.each do |issue| %>
+	   <div>
+	    <%if (issue.id == 1)%>
+	     <b><%= issue.typemanagement %>: <%= issue.totalissues %></b>
+	     <div><%= t :manageable_text_tip %></div><br/>
+	    <%else%>	
+	     <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentUnmanageable&modal=false" title='<%= issue.typemanagement %>: <%= issue.totalissues %>' class="thickbox"><%= issue.typemanagement %>: <%= issue.totalissues %></a></b>
+	     <div><%= t :unmanageable_text_tip %></div>
+	     <div id="hiddenModalContentUnmanageable" style="display: none;">
+	      <% @unmanagementissues.each do |unmanagementissue| %>
+	       <% link_unmanagementissue = unmanagementissue.id.to_s+' - '+unmanagementissue.subject %>
+	       <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_unmanagementissue, unmanagementissue %></div>
+	      <%end%>
+	     </div>
+	    <%end%>
+	   </div>
+	  <%end%>
+	 </div>
+	 </div>
+
+	 <div class="double_chart">
+	 <div id="delayedissues" class="mini_chart"></div>
+	 <div class="mini_note">
+	  <%@overdueissueschart.each do |issue|%>
+	   <div>
+	    <%if (issue.id == 2)%>
+	     <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentOverdue&modal=false" title='<%=issue.typeissue%>(<%=issue.totalissuedelayed%>)' class="thickbox"><%=issue.typeissue%>: <%=issue.totalissuedelayed%></a></b>
+	     <div id="hiddenModalContentOverdue" style="display: none;">
+	     <% @overdueissues.each do |delayed| %>
+	      <%link_name = delayed.id.to_s+' - '+delayed.subject%>
+	      <div style="font-size: 11px; margin-left: 5px;">
+	       <%= link_to link_name, delayed %> - <span style="color: red;"><%= (Date.today - delayed.due_date).to_i %> <%= t :days_late_text %></span>
+	      </div>
+	     <%end%>
+	     </div>
+	    <%else%>
+	     <b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
+	    <%end%>
+	   </div>
+	  <%end%>
+	 </div>
+	 </div>
+
+	 <p id="notice"><%= notice %></p>
+
+ <% else %>
+  <div id="errorExplanation"><%=t :time_mgmt_error_no_issues_found_text %></div>
+ <%end%>
+
 </div>
 
-<div class="double_charts">
- <h2><%= t :categories_issue_label_title %></h2>
-
- <div id="categoryPie" class="double_chart"></div>
- <div id="categoryStackedColumn" class="double_chart"></div>
-</div>
-
-<div class="double_charts">
- <h2><%= t :task_management_label_title %></h2>
-
- <div class="double_chart">
- <div id="managementissues" class="mini_chart"></div>
- <div class="mini_note">
-  <% @managementissues.each do |issue| %>
-   <div>
-    <%if (issue.id == 1)%>
-     <b><%= issue.typemanagement %>: <%= issue.totalissues %></b>
-     <div><%= t :manageable_text_tip %></div><br/>
-    <%else%>	
-     <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentUnmanageable&modal=false" title='<%= issue.typemanagement %>: <%= issue.totalissues %>' class="thickbox"><%= issue.typemanagement %>: <%= issue.totalissues %></a></b>
-     <div><%= t :unmanageable_text_tip %></div>
-     <div id="hiddenModalContentUnmanageable" style="display: none;">
-      <% @unmanagementissues.each do |unmanagementissue| %>
-       <% link_unmanagementissue = unmanagementissue.id.to_s+' - '+unmanagementissue.subject %>
-       <div style="font-size: 11px; margin-left: 5px;"><%= link_to link_unmanagementissue, unmanagementissue %></div>
-      <%end%>
-     </div>
-    <%end%>
-   </div>
-  <%end%>
- </div>
- </div>
-
- <div class="double_chart">
- <div id="delayedissues" class="mini_chart"></div>
- <div class="mini_note">
-  <%@overdueissueschart.each do |issue|%>
-   <div>
-    <%if (issue.id == 2)%>
-     <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentOverdue&modal=false" title='<%=issue.typeissue%>(<%=issue.totalissuedelayed%>)' class="thickbox"><%=issue.typeissue%>: <%=issue.totalissuedelayed%></a></b>
-     <div id="hiddenModalContentOverdue" style="display: none;">
-     <% @overdueissues.each do |delayed| %>
-      <%link_name = delayed.id.to_s+' - '+delayed.subject%>
-      <div style="font-size: 11px; margin-left: 5px;">
-       <%= link_to link_name, delayed %> - <span style="color: red;"><%= (Date.today - delayed.due_date).to_i %> <%= t :days_late_text %></span>
-      </div>
-     <%end%>
-     </div>
-    <%else%>
-     <b><%=issue.typeissue%>: <%=issue.totalissuedelayed%></b>
-    <%end%>
-   </div>
-  <%end%>
- </div>
- </div>
-
- <p id="notice"><%= notice %></p>
-</div>

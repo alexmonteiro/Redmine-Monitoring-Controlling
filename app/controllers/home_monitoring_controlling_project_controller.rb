@@ -18,6 +18,9 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @projects_subprojects = Project.find_by_sql("select * from projects where id in (#{stringSqlProjectsSubProjects});")
     @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
     
+    # total issues from the project and subprojects
+    @totalIssues = Issue.where(:project_id => [stringSqlProjectsSubProjects]).count
+    
     #get count of issues by category
     @issuesbycategory = IssueStatus.find_by_sql("select trackers.name, trackers.position, count(*) as totalbycategory,
                                                 (select count(*) 
@@ -44,13 +47,17 @@ class HomeMonitoringControllingProjectController < ApplicationController
 
 
     #get statuses by main project and subprojects
-    @statuses = IssueStatus.find_by_sql("SELECT *,
-                                          ((SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
-                                          /
-                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects})))*100 as percent,
-                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
-                                          AS totalissues
-                                          FROM issue_statuses;")
+    if @totalIssues > 0 
+      @statuses = IssueStatus.find_by_sql("SELECT *,
+                                            ((SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
+                                            /
+                                            #{@totalIssues})*100 as percent,
+                                            (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
+                                            AS totalissues
+                                            FROM issue_statuses;")
+    else
+      @statuses = nil
+    end                                          
 
     #get management issues by main project
     @managementissues = Issue.find_by_sql("select 1 as id, '#{t :manageable_label}' as typemanagement, count(1) as totalissues

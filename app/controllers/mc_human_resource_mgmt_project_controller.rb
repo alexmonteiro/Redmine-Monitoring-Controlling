@@ -14,6 +14,9 @@ class McHumanResourceMgmtProjectController < ApplicationController
 
     #get projects and sub projects
     stringSqlProjectsSubProjects = tool.return_ids(@project.id)    
+    
+    # total issues from the project and subprojects
+    @totalIssues = Issue.where(:project_id => [stringSqlProjectsSubProjects]).count
 
     @statusesByAssigneds = Issue.find_by_sql("select assigned_to_id, (select firstname from users where id = assigned_to_id) as assigned_first_name, (select lastname from users where id = assigned_to_id) as assigned_last_name,
                                               issue_statuses.id, issue_statuses.name, 
@@ -24,7 +27,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
                                                from issues, issue_statuses  
                                                where project_id in (#{stringSqlProjectsSubProjects}) 
                                                group by assigned_to_id, assigned_first_name, assigned_last_name, issue_statuses.id, issue_statuses.name
-                                               order by 2,3;")    
+                                               order by 2,3;")  || nil  
   end
 
   private

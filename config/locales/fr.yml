@@ -44,6 +44,7 @@ fr:
     time_mgmt_estimated_label: "Estimé"
     time_mgmt_spent_label: "Réalisé"
     time_mgmt_hours_label: "heure(s)"
+    time_mgmt_error_no_issues_found_text: "No issues were found."
     time_mgmt_error_no_issues_duedate_found_text: "Aucune demande avec une date de fin n'a été trouvée."    
     time_mgmt_version_label_title: "Versions by Hours"
 

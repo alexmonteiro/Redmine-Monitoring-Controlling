@@ -44,6 +44,7 @@ zh:
    time_mgmt_estimated_label: "预估"
    time_mgmt_spent_label: "已用"
    time_mgmt_hours_label: "工时"   
+   time_mgmt_error_no_issues_found_text: "No issues were found."
    time_mgmt_error_no_issues_duedate_found_text: "未找到定义计划完成时间的问题。"   
    time_mgmt_version_label_title: "按工时查看版本"   
 
