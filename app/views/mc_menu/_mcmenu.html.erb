@@ -1,11 +1,8 @@
 <%= render :partial => '/mc_menu/progressbar' %>
-<nav id="menu">
-    <ul>
-        <li><%= link_to t(:mc_tasksmgmt_menu_label), { :controller => 'home_monitoring_controlling_project', :action => 'index' }, :class => ("home_monitoring_controlling_project" == params[:controller] ? "menu_selected" : "")   %></li>
-        <li><%= link_to t(:mc_timemgmt_menu_label), { :controller => 'mc_time_mgmt_project', :action => 'index' }, :class => ("mc_time_mgmt_project" == params[:controller] ? "menu_selected" : "")  %></li>
-        <li><%= link_to t(:mc_humanresourcemgmt_menu_label), { :controller => 'mc_human_resource_mgmt_project', :action => 'index' }, :class => ("mc_human_resource_mgmt_project" == params[:controller] ? "menu_selected" : "")  %></li>
-        <li><span id="progressbar" style="width: 250px; margin: 0 0 0 0; float: right; padding: 0;"></span></li>
-    </ul>
-</nav>
-
+<ul class="nav nav-tabs">
+  <li class="<%= activeit?('home_monitoring_controlling_project')%>"><%= link_to ('<i class="icon-list"></i> '+t(:mc_tasksmgmt_menu_label)).html_safe, { :controller => 'home_monitoring_controlling_project', :action => 'index' } %></li>
+  <li class="<%= activeit?('mc_time_mgmt_project')%>"><%= link_to ('<i class="icon-time"></i> '+t(:mc_timemgmt_menu_label)).html_safe, { :controller => 'mc_time_mgmt_project', :action => 'index' } %></li>
+  <li class="<%= activeit?('mc_human_resource_mgmt_project')%>"><%= link_to ('<i class="icon-user"></i> '+t(:mc_humanresourcemgmt_menu_label)).html_safe, { :controller => 'mc_human_resource_mgmt_project', :action => 'index' } %></li>
+  <span id="progressbar" style="width: 250px; margin: 0 0 0 0; float: right; padding: 0;"></span>
+</ul>
 

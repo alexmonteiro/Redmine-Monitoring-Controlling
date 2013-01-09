@@ -104,6 +104,10 @@ class HomeMonitoringControllingProjectController < ApplicationController
 
 
   end
+  
+  def search
+    self.index
+  end
 
   private
   def find_project

@@ -42,6 +42,9 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 * Restart your redmine application.
 * Activate your M&C on projects modulues.
 
+== License
+
+
 == Credits
 
 * Highcharts[http://www.highcharts.com/]: interactive javascript charts for your web projects;

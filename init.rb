@@ -23,3 +23,5 @@ Redmine::Plugin.register :redmine_monitoring_controlling do
 
 end
 
+ActionView::Base.send(:include, McMenuHelper)
+
