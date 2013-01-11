@@ -13,11 +13,18 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @project = Project.find_by_identifier(params[:id])
 
     #get projects and sub projects
-    stringSqlProjectsSubProjects = tool.return_ids(@project.id)
+    if params[:rmcsearch_only_main_project]
+     stringSqlProjectsSubProjects = tool.return_ids(@project.id)
+    else
+     stringSqlProjectsSubProjects = @project.id
+    end
     
-    @projects_subprojects = Project.find_by_sql("select * from projects where id in (#{stringSqlProjectsSubProjects});")
-    @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
-    
+    #@projects_subprojects = Project.find_by_sql("select * from projects where id in (#{stringSqlProjectsSubProjects});")
+    #@projects_subprojects = Project.find([stringSqlProjectsSubProjects])
+
+    #@all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
+    @all_project_issues = Issue.where(:project_id => [stringSqlProjectsSubProjects])
+
     #get count of issues by category
     @issuesbycategory = IssueStatus.find_by_sql("select trackers.name, trackers.position, count(*) as totalbycategory,
                                                 (select count(*) 

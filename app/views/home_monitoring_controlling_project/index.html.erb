@@ -77,13 +77,14 @@
 		<%= form_tag params[:id], :method => :post, :id => 'form_search' do %>
 			<h3>Pesquisa</h3>
 
-			 <h5><%= check_box_tag "mcsearch_subproject", 1, true %>  <%= "Pesquisar projetos e subprojetos" %></h5>
+			 <h5><%= check_box_tag "rmcsearch_only_main_project", 1, (  params[:rmcsearch_only_main_project] ? true : false) %>  <%= "Somente o projeto pai" %></h5>
 			 <br/>
 			<p>
-	 		  <%= link_to ('<i class="icon-refresh"></i> Atualizar').html_safe, { :controller => 'home_monitoring_controlling_project', :action => 'index'}, :class => 'btn btn-mini' %>
-	          <%= submit_tag "Atualizar".html_safe, :class => 'btn btn-mini' %>
-			</p>
-			 <%= params[:mcsearch_subproject]%>
+				<button type="submit" class="btn btn-mini">
+				  <i class="icon-user icon-refresh"></i> Atualizar
+				</button>
+             </p>			
+			 <%= "Somente o projeto pai" if params[:rmcsearch_only_main_project] %>
 		<%end%>
 		<!-- -->
 	  </div>
