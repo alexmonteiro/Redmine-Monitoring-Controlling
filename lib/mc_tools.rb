@@ -1,6 +1,7 @@
 class McTools
   # This class holds useful functions
   # user on Monitoring & Controlling plugin
+  #$params = "Teste2"
   
   # return the plugin folder instalation
   def returnPluginFolderName
@@ -17,15 +18,19 @@ class McTools
   end
     
   # return an array with the project and subprojects IDs
-  def return_ids(id)       
-     array = Array.new
-     array.push(id)  
-     subprojects = subProjects(id)
-     subprojects.each do |project|     
-      array.push(return_ids(project.id))
-     end
+  def return_ids(id) 
+    if (params[:rmcsearch] && !params[:rmcsearch][:only_main_project])
+       array = Array.new
+       array.push(id)  
+       subprojects = subProjects(id)
+       subprojects.each do |project|     
+        array.push(return_ids(project.id))
+       end
       
-     return array.inspect.gsub("[","").gsub("]","").gsub("\\","").gsub("\"","")
+       return array.inspect.gsub("[","").gsub("]","").gsub("\\","").gsub("\"","")
+    else
+       return id
+    end
   end
 
   # return total of tasks with closed flag false
@@ -37,6 +42,26 @@ class McTools
   def returnTotalOfOpenTasks(project_identifier)
     countTasks(project_identifier, false)
   end
+  
+  def setParams(params)
+    $params = params
+  end
+  
+  def params
+    $params
+  end  
+  
+  #return conditions to query based on params
+  def searchIssuesConditions
+    if $params.has_key?(:rmcsearch)
+      if $params[:rmcsearch].has_key?(:version)
+        if $params[:rmcsearch][:version] > '0'
+         "AND issues.fixed_version_id = #{$params[:rmcsearch][:version]}"
+        end
+      end 
+    end
+  end
+  
   
   private
   #count tasks
@@ -55,6 +80,6 @@ class McTools
     end
             
     total
-  end
+  end      
   
 end

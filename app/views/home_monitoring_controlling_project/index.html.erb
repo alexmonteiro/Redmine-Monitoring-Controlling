@@ -72,20 +72,43 @@
 		</div>
 
       </div>
-	  <div class="span4">
+	  <div class="span3 well well-small">
+		  <% if (params[:rmcsearch] && params[:rmcsearch][:only_main_project]) || (params[:rmcsearch] && !params[:rmcsearch][:version].blank?) %>
+			<div class="alert alert-info">
+			  <dl>
+			   <dt>Parâmetros da pesquisa:</dt>	
+			    <%= "<li>Somente o projeto pai </li>".html_safe if params[:rmcsearch][:only_main_project] %>
+			    <%= "<li> Versão: #{Version.find(params[:rmcsearch][:version]).try(:name)}</li>".html_safe if !params[:rmcsearch][:version].blank? %>
+			   </dl>
+			</div>
+		  <% end %>
 		<!-- Search parameters -->
-		<%= form_tag params[:id], :method => :post, :id => 'form_search' do %>
-			<h3>Pesquisa</h3>
-
-			 <h5><%= check_box_tag "rmcsearch_only_main_project", 1, (  params[:rmcsearch_only_main_project] ? true : false) %>  <%= "Somente o projeto pai" %></h5>
-			 <br/>
-			<p>
-				<button type="submit" class="btn btn-mini">
-				  <i class="icon-user icon-refresh"></i> Atualizar
-				</button>
-             </p>			
-			 <%= "Somente o projeto pai" if params[:rmcsearch_only_main_project] %>
+		<%= form_for "rmcsearch", :method => :post, :html => { :class => 'form-horizontal' } do |f| %>
+			<h2>Pesquisa</h2>
+			<div class="span8">
+	            <dl>
+		            <dt>Tarefas:</dt>
+					<dd>
+					 <%= check_box_tag "rmcsearch[only_main_project]", true, ( params[:rmcsearch] && params[:rmcsearch][:only_main_project] ? true : false ) %><%= " Somente o projeto pai" %>
+					</dd>
+					<%if @project.versions.count > 0 %>
+			            <dt>Versões:</dt>
+						<dd>
+						 <%= f.collection_select(:version, @project.versions,
+						                  :id, :name, {:prompt => 'Please select version', :selected => ((params[:rmcsearch] && params[:rmcsearch][:version]) ? params[:rmcsearch][:version] : nil) })%> 
+						</dd>
+					<%end%>
+	             </dl>
+				<dl>
+					<button type="submit" class="btn btn-mini">
+					  <i class="icon-user icon-refresh"></i> Atualizar
+					</button>
+	             </dl>
+			</div>
+			 
 		<%end%>
+		
+		
 		<!-- -->
 	  </div>
     </div>

@@ -8,6 +8,7 @@ class McHumanResourceMgmtProjectController < ApplicationController
   def index    
     #tool instance
     tool = McTools.new
+    tool.setParams(params)    
     
     #get main project
     @project = Project.find_by_identifier(params[:id])
