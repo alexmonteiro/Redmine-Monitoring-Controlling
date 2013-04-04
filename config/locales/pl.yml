@@ -1,0 +1,57 @@
+pl:
+    #menu
+    mc_tasksmgmt_menu_label: "Notki"
+    mc_timemgmt_menu_label: "Czas"
+    mc_humanresourcemgmt_menu_label: "Zasoby ludzkie"
+
+    #permissions
+    permission_view_home_monitoring_controlling: "Przeglądanie statystyk zadań"
+    permission_view_mc_time_mgmt_project: "Przeglądanie statystyk czasu"
+    permission_view_mc_human_resource_mgmt_project: "Przeglądanie statystyk zasobów ludzkich"
+
+    monitoring_controlling_title: "Statystyki"
+    project_module_monitoring_controlling_project: "Statystyki projektu"
+    monitoring_controlling_project: "Statystyki projektu"
+    statuses_issue_label_title: "Notki według statusów"
+    categories_issue_label_title: "Notki według kategorii"
+
+    task_management_label_title: "Terminy notek"
+    task_manageable_chart_title: "Daty oddania notek"
+    task_manageable_chart_overdue_title: "Notki z datą oddania"
+
+    manageable_label: "Z datą oddania"
+    unmanageable_label: "Bez daty oddania"
+    manageable_text_tip: "Notki z datą oddania."
+    unmanageable_text_tip: "Notki bez daty oddania."
+
+    tasks_label: "notek"
+    tasksof_label: "notek z"
+
+    overdue_label: "Opóźnione"
+    overdue_text: "opóźnionych"
+    delivered_label: "Zamknięte"
+    tobedelivered_label: "W czasie"
+    days_late_text: "dni opóźnienia"
+
+    close_label: "zamknij"
+
+    # date format
+    default_date_format: "%Y/%m/%d"
+
+    # time management screen
+    time_mgmt_label_title: "Szacowany i przepracowany czas"
+    time_mgmt_areaspline_yaxis_label: "Czas (godziny)"
+    time_mgmt_estimated_label: "Szacowany czas"
+    time_mgmt_spent_label: "Przepracowany czas"
+    time_mgmt_hours_label: "godzin"
+    time_mgmt_error_no_issues_found_text: "Brak notek."
+    time_mgmt_error_no_issues_duedate_found_text: "Brak notek z datą oddania."
+    time_mgmt_version_label_title: "Czas w wersjach"
+
+    # human resource management
+    hr_mgmt_label_title: "Zasoby ludzkie"
+    hr_unassigned_issue_label: "nieprzypisane"
+    hr_columnbar_title_label: "Liczba przypisanych notek do osoby"
+    hr_columnbar_yaxis_label: "Liczba notek"
+    hr_stackedcolumnbar_title_label: "Assignee and issues by situation"
+    hr_stackedcolumnbar_yaxis_label: "Liczba notek"
