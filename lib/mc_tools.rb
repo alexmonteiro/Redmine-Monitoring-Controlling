@@ -62,6 +62,24 @@ class McTools
     end
   end
   
+  def searchIssuesByYear
+    if $params.has_key?(:rmcsearch)
+      if $params[:rmcsearch].has_key?(:year)
+         if $params[:rmcsearch][:year] > '0'
+           dateBegin = Date.new($params[:rmcsearch][:year].to_i, 1, 1)
+           dateEnd = Date.new($params[:rmcsearch][:year].to_i, 12, 31)
+           Rails.logger.warn "AND ((due_date is null AND start_date is null) 
+                        OR (due_date is null AND start_date <= '#{dateEnd}') 
+                        OR (start_date is null AND due_date >= '#{dateBegin}') 
+                        OR (due_date >= #{dateBegin} AND start_date <= '#{dateEnd}'))"
+           "AND ((due_date is null AND start_date is null) 
+             OR (due_date is null AND start_date <= '#{dateEnd}') 
+             OR (start_date is null AND due_date >= '#{dateBegin}') 
+             OR (due_date >= '#{dateBegin}' AND start_date <= '#{dateEnd}'))"
+         end
+      end
+    end
+  end
   
   private
   #count tasks

@@ -54,3 +54,8 @@ en:
     hr_columnbar_yaxis_label: "Count of Issues"
     hr_stackedcolumnbar_title_label: "Assignee and issues by situation"
     hr_stackedcolumnbar_yaxis_label: "Count of Issues"
+    
+    #search
+    search_parameters: "Search parameters"
+    only_main_project: "Only main project"
+    actualize: "Actualize"
