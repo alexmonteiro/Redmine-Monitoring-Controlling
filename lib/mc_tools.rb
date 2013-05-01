@@ -33,6 +33,47 @@ class McTools
     end
   end
 
+  # return a set of relevant years for a project and its subprojects
+  def relevant_years(project_id)
+    years = SortedSet.new
+    actualYear = Date.today.year
+    issues = Issue.where("project_id = ?", project_id)
+    issues.each do |i|
+      if(i.start_date != nil && i.due_date != nil)
+        start_year = i.start_date.year
+        end_year = i.due_date.year
+        for y in (start_year..end_year)
+          years.add(y)
+        end
+      elsif(i.start_date != nil && i.due_date == nil) 
+        start_year = i.start_date.year
+        if(start_year > actualYear)
+          years.add(start_year)
+        else
+          for y in (start_year..actualYear)
+            years.add(y)
+          end
+        end
+      elsif(i.start_date == nil && i.due_date != nil)
+        end_year = i.due_date.year
+        if(end_year < actualYear)
+          years.add(end_year)
+        else
+          for y in (actualYear..end_year)
+            years.add(y)
+          end
+        end 
+      end
+    end
+    if((!params[:rmcsearch]) || (params[:rmcsearch] && !params[:rmcsearch][:only_main_project]))
+      subprojects = subProjects(project_id)
+      subprojects.each do |p|
+        years.merge(relevant_years(p.id))
+      end
+    end
+    return years
+  end
+  
   # return total of tasks with closed flag false
   # done tasks
   def returnTotalOfClosedTasks(project_identifier)
@@ -53,32 +94,25 @@ class McTools
   
   #return conditions to query based on params
   def searchIssuesConditions
+    conditions = ""
     if $params.has_key?(:rmcsearch)
       if $params[:rmcsearch].has_key?(:version)
         if $params[:rmcsearch][:version] > '0'
-         "AND issues.fixed_version_id = #{$params[:rmcsearch][:version]}"
+         conditions += "AND issues.fixed_version_id = #{$params[:rmcsearch][:version]}"
         end
       end 
-    end
-  end
-  
-  def searchIssuesByYear
-    if $params.has_key?(:rmcsearch)
       if $params[:rmcsearch].has_key?(:year)
          if $params[:rmcsearch][:year] > '0'
            dateBegin = Date.new($params[:rmcsearch][:year].to_i, 1, 1)
            dateEnd = Date.new($params[:rmcsearch][:year].to_i, 12, 31)
-           Rails.logger.warn "AND ((due_date is null AND start_date is null) 
-                        OR (due_date is null AND start_date <= '#{dateEnd}') 
-                        OR (start_date is null AND due_date >= '#{dateBegin}') 
-                        OR (due_date >= #{dateBegin} AND start_date <= '#{dateEnd}'))"
-           "AND ((due_date is null AND start_date is null) 
+           conditions += " AND ((due_date is null AND start_date is null) 
              OR (due_date is null AND start_date <= '#{dateEnd}') 
              OR (start_date is null AND due_date >= '#{dateBegin}') 
              OR (due_date >= '#{dateBegin}' AND start_date <= '#{dateEnd}'))"
          end
       end
     end
+    return conditions
   end
   
   private

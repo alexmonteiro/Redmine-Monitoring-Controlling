@@ -17,7 +17,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
     stringSqlProjectsSubProjects = tool.return_ids(@project.id)
 
 
-    @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects}) #{tool.searchIssuesConditions} #{tool.searchIssuesByYear};")
+    @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects}) #{tool.searchIssuesConditions};")
 
     #get count of issues by category
     @issuesbycategory = IssueStatus.find_by_sql(["select trackers.name, trackers.position, count(*) as totalbycategory,
@@ -27,7 +27,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                  and issues.tracker_id = trackers.id
                                                  and status_id in (select id from issue_statuses where is_closed = ?)
                                                  #{tool.searchIssuesConditions}
-                                                 #{tool.searchIssuesByYear}
                                                 ) as totaldone,
                                                 (select count(*) 
                                                  from issues 
@@ -35,7 +34,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                  and issues.tracker_id = trackers.id
                                                  and status_id in (select id from issue_statuses where is_closed = ?)
                                                  #{tool.searchIssuesConditions}
-                                                 #{tool.searchIssuesByYear}
                                                 ) as totalundone
                                                 from trackers, projects_trackers, issues
                                                 where projects_trackers.tracker_id = trackers.id 
@@ -43,7 +41,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                 and issues.tracker_id = trackers.id
                                                 and projects_trackers.project_id in (#{stringSqlProjectsSubProjects}) 
                                                 #{tool.searchIssuesConditions}
-                                                #{tool.searchIssuesByYear}
                                                 group by trackers.id, trackers.name, trackers.position
                                                 order by 2;", true, false])
 
@@ -52,17 +49,17 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @statuses = IssueStatus.find_by_sql("SELECT *,
                                           ((SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id #{tool.searchIssuesConditions})
                                           /
-                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) #{tool.searchIssuesConditions} #{tool.searchIssuesByYear}))*100 as percent,
-                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id #{tool.searchIssuesConditions} #{tool.searchIssuesByYear}) 
+                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) #{tool.searchIssuesConditions}))*100 as percent,
+                                          (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id #{tool.searchIssuesConditions}) 
                                           AS totalissues
                                           FROM issue_statuses;")
 
     #get management issues by main project
     @managementissues = Issue.find_by_sql("select 1 as id, '#{t :manageable_label}' as typemanagement, count(1) as totalissues
-                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is not null #{tool.searchIssuesConditions} #{tool.searchIssuesByYear}
+                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is not null #{tool.searchIssuesConditions}
                                                 union
                                                 select 2 as id, '#{t :unmanageable_label}' as typemanagement, count(1) as totalissues
-                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is null #{tool.searchIssuesConditions} #{tool.searchIssuesByYear};")
+                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is null #{tool.searchIssuesConditions};")
 
 
     #get overdue issues for char by by project and subprojects
@@ -73,7 +70,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                   and due_date <  '#{Date.today}'
                                                   and status_id in (select id from issue_statuses where is_closed = ?)
                                                   #{tool.searchIssuesConditions}
-                                                  #{tool.searchIssuesByYear}
                                                   union
                                                   select 1 as id, '#{t :delivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues
@@ -82,7 +78,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                   and due_date < '#{Date.today}'
                                                   and status_id in (select id from issue_statuses where is_closed = ?)
                                                   #{tool.searchIssuesConditions}
-                                                  #{tool.searchIssuesByYear}
                                                   union
                                                   select 3 as id, '#{t :tobedelivered_label}' as typeissue, count(1) as totalissuedelayed
                                                   from issues
@@ -91,7 +86,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                   and due_date >= '#{Date.today}'
                                                   and status_id in (select id from issue_statuses where is_closed = ?)
                                                   #{tool.searchIssuesConditions}
-                                                  #{tool.searchIssuesByYear}
                                                   order by 1;", false, true, false])
 
 
@@ -103,7 +97,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                     and due_date < '#{Date.today}'
                                                     and status_id in (select id from issue_statuses where is_closed = ? )
                                                     #{tool.searchIssuesConditions}
-                                                    #{tool.searchIssuesByYear}
                                                     order by due_date;",false])
 
     #get unmanagement issues by main project
@@ -111,10 +104,11 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                              from issues where project_id in (#{stringSqlProjectsSubProjects}) 
                                              and due_date is null
                                              #{tool.searchIssuesConditions}
-                                             #{tool.searchIssuesByYear}
                                              order by 1;")
 
-
+    #get relevant years
+    @years = tool.relevant_years(@project.id)
+                                             
   end
   
   def search

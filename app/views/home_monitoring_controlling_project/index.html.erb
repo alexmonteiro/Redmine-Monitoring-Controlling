@@ -73,13 +73,13 @@
 
       </div>
 	  <div class="span3 well well-small">
-		  <% if (params[:rmcsearch] && params[:rmcsearch][:only_main_project]) || (params[:rmcsearch] && !params[:rmcsearch][:version].blank?)  || (params[:rmcsearch] && !params[:rmcsearch][:year].blank?) %>
+		  <% if (params[:rmcsearch] && params[:rmcsearch][:only_main_project]) || (params[:rmcsearch] && !params[:rmcsearch][:version].blank?)  || (params[:rmcsearch] && params[:rmcsearch][:year].to_i > 0) %>
 			<div class="alert alert-info">
 			  <dl>
 			   <dt><%= t(:search_parameters) %></dt>	
-			    <%= "<li>#{t(:only_main_project)} </li>".html_safe if params[:rmcsearch][:only_main_project] %>
-			    <%= "<li>#{t(:version)} : #{Version.find(params[:rmcsearch][:version]).try(:name)}</li>".html_safe if !params[:rmcsearch][:version].blank? %>
-			    <%= "<li>#{t(:year)} : #{params[:rmcsearch][:year]} </li>".html_safe if params[:rmcsearch][:year] > 0 %>
+			    <%= "<li> #{t(:only_main_project)} </li>".html_safe if params[:rmcsearch][:only_main_project] %>
+			    <%= "<li> #{t(:version)} : #{Version.find(params[:rmcsearch][:version]).try(:name)}</li>".html_safe if !params[:rmcsearch][:version].blank? %>
+			    <%= "<li> #{t(:year)} : #{params[:rmcsearch][:year]} </li>".html_safe if params[:rmcsearch][:year].to_i > 0 %>
 			   </dl>
 			</div>
 		  <% end %>
@@ -99,12 +99,14 @@
 						                  :id, :name, {:prompt => 'Please select version', :selected => ((params[:rmcsearch] && params[:rmcsearch][:version]) ? params[:rmcsearch][:version] : nil) })%> 
 						</dd>
 					<%end%>
-					
+					<% if @years.count > 0 %>
 					<dt><%= t(:years)%></dt>
 					<dd>
-						<%= select_tag("rmcsearch[year]", options_for_select([['Please select a year', 0], ['2012', 2012], ['2013', 2013]], :selected => ((params[:rmcsearch] && params[:rmcsearch][:year]) ? params[:rmcsearch][:year] : nil))) %>
+						<%= f.collection_select(:year, @years,
+										:to_i, :to_s, 
+										{:prompt =>'Please select a year', :selected => ((params[:rmcsearch] && params[:rmcsearch][:year]) ? params[:rmcsearch][:year] : nil)}) %>
 					</dd>
-					
+					<% end %>
 					
 	             </dl>
 				<dl>
