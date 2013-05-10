@@ -19,7 +19,7 @@ class McTools
     
   # return an array with the project and subprojects IDs
   def return_ids(id) 
-    if (params[:rmcsearch] && !params[:rmcsearch][:only_main_project])
+    if (!params[:rmcsearch] || (params[:rmcsearch] && !params[:rmcsearch][:only_main_project]))
        array = Array.new
        array.push(id)  
        subprojects = subProjects(id)
