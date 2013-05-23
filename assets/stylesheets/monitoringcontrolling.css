@@ -75,3 +75,60 @@ div.mini_chart_note {
     margin: 0 auto;
     float: left;
 }
+
+[class^="icon-"],
+[class*=" icon-"] {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  *margin-right: .3em;
+  line-height: 14px;
+  vertical-align: text-top;
+  background-image: url("../images/glyphicons-halflings.png");
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+
+.icon-list {
+  background-position: -360px -48px;
+}
+
+.icon-time {
+  background-position: -48px -24px;
+}
+
+.icon-user {
+  background-position: -168px 0;
+}
+
+.icon-refresh {
+  background-position: -240px -24px;
+}
+
+#content .tabs ul li a.active {
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+  border-bottom: 1px solid #fff;
+  color:#444;
+}
+
+/***** Tabular forms ******/
+#sidebar .tabular p{
+  margin: 0;
+  padding: 3px 0 3px 0;
+  padding-left: 70px; /* width of left column containing the label elements */
+  min-height: 1.8em;
+  clear:left;
+}
+
+html>body .tabular p {overflow:hidden;}
+
+#sidebar .tabular label{
+  /* width of left column */
+  margin-left: -70px;
+  /* width of labels. Should be smaller than left column to create some right margin */
+  width: 65px;
+}

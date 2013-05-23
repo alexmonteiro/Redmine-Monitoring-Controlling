@@ -54,3 +54,8 @@ fr:
     hr_columnbar_yaxis_label: "Nombre de demandes"
     hr_stackedcolumnbar_title_label: "Assignés et demandes par états"
     hr_stackedcolumnbar_yaxis_label: "Nombre de demandes"
+
+    # search
+    search_parameters: "Search parameters"
+    only_main_project: "Seulement le projet principal"
+    actualize: "Actualiser"

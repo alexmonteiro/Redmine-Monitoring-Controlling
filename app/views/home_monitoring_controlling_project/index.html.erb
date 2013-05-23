@@ -1,10 +1,8 @@
-<div class="row-fluid">
-  <div class="span12">
+
 	<%= render :partial => '/mc_menu/contentHeader' %>
 	<%= render :partial => 'index' %>
 	<%= render :partial => '/mc_menu/mcmenu' %>
-    <div class="row-fluid">
-      <div class="span8">
+
 		<div class="double_charts">
 		 <h2><%=t :statuses_issue_label_title %> - <%=  @all_project_issues.count %> <%=t :tasks_label%>, <%= @overdueissues.count %> <%=t :overdue_text%> </h2>
 
@@ -71,46 +69,54 @@
 		 <p id="notice"><%= notice %></p>
 		</div>
 
-      </div>
-	  <div class="span3 well well-small">
-		  <% if (params[:rmcsearch] && params[:rmcsearch][:only_main_project]) || (params[:rmcsearch] && !params[:rmcsearch][:version].blank?) %>
-			<div class="alert alert-info">
-			  <dl>
-			   <dt>Parâmetros da pesquisa:</dt>	
-			    <%= "<li>Somente o projeto pai </li>".html_safe if params[:rmcsearch][:only_main_project] %>
-			    <%= "<li> Versão: #{Version.find(params[:rmcsearch][:version]).try(:name)}</li>".html_safe if !params[:rmcsearch][:version].blank? %>
-			   </dl>
-			</div>
-		  <% end %>
-		<!-- Search parameters -->
-		<%= form_for "rmcsearch", :method => :post, :html => { :class => 'form-horizontal' } do |f| %>
-			<h2>Pesquisa</h2>
-			<div class="span8">
-	            <dl>
-		            <dt>Tarefas:</dt>
-					<dd>
-					 <%= check_box_tag "rmcsearch[only_main_project]", true, ( params[:rmcsearch] && params[:rmcsearch][:only_main_project] ? true : false ) %><%= " Somente o projeto pai" %>
-					</dd>
-					<%if @project.versions.count > 0 %>
-			            <dt>Versões:</dt>
-						<dd>
-						 <%= f.collection_select(:version, @project.versions,
+
+
+
+
+<% content_for :sidebar do %>
+      <!--
+	<% if (params[:rmcsearch] && params[:rmcsearch][:only_main_project]) || (params[:rmcsearch] && !params[:rmcsearch][:version].blank?)  || (params[:rmcsearch] && params[:rmcsearch][:year].to_i > 0) %>
+		
+			<h3><%= t(:search_parameters) %></h3>
+			<ul>	
+			    <%= "<li> #{t(:only_main_project)} </li>".html_safe if params[:rmcsearch][:only_main_project] %>
+			    <%= "<li> #{t(:version)} : #{Version.find(params[:rmcsearch][:version]).try(:name)}</li>".html_safe if !params[:rmcsearch][:version].blank? %>
+			    <%= "<li> #{t(:year)} : #{params[:rmcsearch][:year]} </li>".html_safe if params[:rmcsearch][:year].to_i > 0 %>
+			</ul>
+	<% end %>
+		-->
+	<!-- Search parameters -->
+	<%= form_for "rmcsearch", :method => :post, :html => { :class => 'form' } do |f| %>
+		<h3><%= t(:search) %></h3>
+		<div class="tabular">
+		<p>
+		  <label><%= t(:issues) + " :" %></label>
+		  <%= check_box_tag "rmcsearch[only_main_project]", true, ( params[:rmcsearch] && params[:rmcsearch][:only_main_project] ? true : false ) %> <%= t :only_main_project %>
+		</p>
+					
+		<%if @project.versions.count > 0 %>
+		  <p>
+		    <label><%= t(:version) + " :"%></label>
+			<%= f.collection_select(:version, @project.versions,
 						                  :id, :name, {:prompt => 'Please select version', :selected => ((params[:rmcsearch] && params[:rmcsearch][:version]) ? params[:rmcsearch][:version] : nil) })%> 
-						</dd>
-					<%end%>
-	             </dl>
-				<dl>
-					<button type="submit" class="btn btn-mini">
-					  <i class="icon-user icon-refresh"></i> Atualizar
-					</button>
-	             </dl>
-			</div>
-			 
+		  </p>
 		<%end%>
-		
-		
-		<!-- -->
-	  </div>
-    </div>
-  </div>
-</div>
+		<% if @years.count > 0 %>
+		  <p>
+		    <label><%= t(:years) + " :"%></label>
+		    <%= f.collection_select(:year, @years,
+										:to_i, :to_s, 
+										{:prompt =>'Please select a year', :selected => ((params[:rmcsearch] && params[:rmcsearch][:year]) ? params[:rmcsearch][:year] : nil)}) %>
+	 	  </p>
+		<% end %>
+
+	    <p>
+	      <button type="submit" class="btn btn-mini">
+		    <i class="icon-user icon-refresh"></i> <%= t(:actualize) %>
+		  </button>
+	    </p>
+		</div> 
+	<%end%>
+    <!-- -->
+
+<% end %>

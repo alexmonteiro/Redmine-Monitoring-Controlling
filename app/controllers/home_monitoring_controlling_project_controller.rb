@@ -20,19 +20,19 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects}) #{tool.searchIssuesConditions};")
 
     #get count of issues by category
-    @issuesbycategory = IssueStatus.find_by_sql("select trackers.name, trackers.position, count(*) as totalbycategory,
+    @issuesbycategory = IssueStatus.find_by_sql(["select trackers.name, trackers.position, count(*) as totalbycategory,
                                                 (select count(*) 
                                                  from issues 
                                                  where project_id in (#{stringSqlProjectsSubProjects})
                                                  and issues.tracker_id = trackers.id
-                                                 and status_id in (select id from issue_statuses where is_closed = true)
+                                                 and status_id in (select id from issue_statuses where is_closed = ?)
                                                  #{tool.searchIssuesConditions}
                                                 ) as totaldone,
                                                 (select count(*) 
                                                  from issues 
                                                  where project_id in (#{stringSqlProjectsSubProjects})
                                                  and issues.tracker_id = trackers.id
-                                                 and status_id in (select id from issue_statuses where is_closed = false)
+                                                 and status_id in (select id from issue_statuses where is_closed = ?)
                                                  #{tool.searchIssuesConditions}
                                                 ) as totalundone
                                                 from trackers, projects_trackers, issues
@@ -42,7 +42,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                 and projects_trackers.project_id in (#{stringSqlProjectsSubProjects}) 
                                                 #{tool.searchIssuesConditions}
                                                 group by trackers.id, trackers.name, trackers.position
-                                                order by 2;")
+                                                order by 2;", true, false])
 
 
     #get statuses by main project and subprojects
@@ -106,10 +106,9 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                              #{tool.searchIssuesConditions}
                                              order by 1;")
 
-
-
-
-
+    #get relevant years
+    @years = tool.relevant_years(@project.id)
+                                             
   end
   
   def search
