@@ -44,8 +44,8 @@ M&C is a Redmine Plugin used as a chart tool to monitoring issues' project
 
 == License
  
-Redmine Monitoring & Controlling Plugin is open source and released under the terms of the "GNU General Public License v3"[https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/blob/master/license.txt] (GPL).
-Check "GNU GPL v3 quick guide"[http://www.gnu.org/licenses/quick-guide-gplv3.html] for more information.
+Redmine Monitoring & Controlling Plugin is open source and released under the terms of the {GNU General Public License v3}[https://github.com/alexmonteiro/Redmine-Monitoring-Controlling/blob/master/license.txt] (GPL).
+Check 'GNU GPL v3 quick guide'[http://www.gnu.org/licenses/quick-guide-gplv3.html] for more information.
 
 == Credits
 
