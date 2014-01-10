@@ -1,0 +1,57 @@
+en:
+    #menu
+    mc_tasksmgmt_menu_label: "Aufgaben verwalten"
+    mc_timemgmt_menu_label: "Zeitverwaltung"
+    mc_humanresourcemgmt_menu_label: "Human Resource verwalten"     
+
+    #permissions
+    permission_view_home_monitoring_controlling: "M&C Aufgabenverwaltung anzeigen"
+    permission_view_mc_time_mgmt_project: "M&C Zeitverwaltung anzeigen"
+    permission_view_mc_human_resource_mgmt_project: "M&C Human Resources anzeigen"    
+        
+    monitoring_controlling_title: "Scrum Statistik"
+    project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"    
+    monitoring_controlling_project: "Monitoring & Controlling by Project"
+    statuses_issue_label_title: "Tasks by Statuses"
+    categories_issue_label_title: "Tasks by Category"
+    
+    task_management_label_title: "Tasks Management"
+    task_manageable_chart_title: "Manageable Tasks"
+    task_manageable_chart_overdue_title: "Overdue Tasks"
+    
+    manageable_label: "Manageable(s)"
+    unmanageable_label: "Unmanageable(s)"
+    manageable_text_tip: "Aufgabe mit Abgabedatum."
+    unmanageable_text_tip: "Aufgaben ohne Abgabedatum."
+    
+    tasks_label: "Aufgabe(n)"
+    tasksof_label: "Aufgabe(n) von"    
+    
+    overdue_label: "Überfällig"
+    overdue_text: "überfällig(e)"    
+    delivered_label: "Ausgeliefert"
+    tobedelivered_label: "Auszuliefern am"
+    days_late_text: "Tag(e) verpätet"
+
+    close_label: "schliessen"
+
+    # date format
+    default_date_format: "%d.%m.%Y"    
+
+    # time management screen
+    time_mgmt_label_title: "Fällige Stunden und aufgewendete Stunden"
+    time_mgmt_areaspline_yaxis_label: "Zeit (Stunden)"
+    time_mgmt_estimated_label: "Erwarted"
+    time_mgmt_spent_label: "Abgelaufen"
+    time_mgmt_hours_label: "Stunde(n)"
+    time_mgmt_error_no_issues_found_text: "Keine Tickets gefunden."
+    time_mgmt_error_no_issues_duedate_found_text: "Keine Tickets mit Abgabedatum gefunden."    
+    time_mgmt_version_label_title: "Versionen nach Stunden"
+
+    # human resource management
+    hr_mgmt_label_title: "Human Resources Verwaltung"
+    hr_unassigned_issue_label: "nicht zugeordnet"
+    hr_columnbar_title_label: "Tickets nach Zugehörigkeit"
+    hr_columnbar_yaxis_label: "Anzahl der Tickets"
+    hr_stackedcolumnbar_title_label: "Zugehörigkeit und Tickets by situation"
+    hr_stackedcolumnbar_yaxis_label: "Anzahl der Tickets"
