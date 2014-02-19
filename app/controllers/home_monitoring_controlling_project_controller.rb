@@ -46,27 +46,27 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                 order by 2;", true, false])
 
     #get count of issues by departmanent
-    @issuesbydepartament = IssueStatus.find_by_sql(["select trackers.name, trackers.position, count(*) as totalbycategory,
+    @issuesbydepartament = IssueStatus.find_by_sql(["
+    select issue_categories.name, issue_categories.position, count(*) as totalbycategory,
                                                 (select count(*)
                                                  from issues
                                                  where project_id in (#{stringSqlProjectsSubProjects})
-                                                 and issues.tracker_id = trackers.id
+                                                 and issues.category_id = issue_categories.id
                                                  and status_id in (select id from issue_statuses where is_closed = ?)
 
                                                 ) as totaldone,
                                                 (select count(*)
                                                  from issues
                                                  where project_id in (#{stringSqlProjectsSubProjects})
-                                                 and issues.tracker_id = trackers.id
+                                                 and issues.category_id = issue_categories.id
                                                  and status_id in (select id from issue_statuses where is_closed = ?)
 
                                                 ) as totalundone
-                                                from trackers, projects_trackers, issues
-                                                where projects_trackers.tracker_id = trackers.id
-                                                and projects_trackers.project_id = issues.project_id
-                                                and issues.tracker_id = trackers.id
-                                                and projects_trackers.project_id in (#{stringSqlProjectsSubProjects})
-                                                group by trackers.id, trackers.name, trackers.position
+                                                from issue_categories, issues
+                                                where issue_categories.project_id = issues.project_id
+                                                and issues.category_id = issue_categories.id
+                                                and issue_categories.project_id in (#{stringSqlProjectsSubProjects})
+                                                group by issue_categories.id, issue_categories.name
                                                 order by 2;", true, false])
 
 
