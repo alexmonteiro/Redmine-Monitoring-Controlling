@@ -341,6 +341,52 @@ $(document).ready(function() {
 });
 </script>
 
+
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            credits: {
+              enabled: false
+            },
+            chart: {
+                renderTo: 'departamentPie',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<%=@project.name%>'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y,0) +' <%=t :tasks_label%>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: <%=@issuesbydepartament.map{ |category| [category.name.to_s, category.totalbycategory.to_i]}.inspect.html_safe%>
+            }]
+        });
+    });
+
+});
+</script>
 <script type="text/javascript">
 var chart;
 $(document).ready(function() {
