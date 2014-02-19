@@ -2,33 +2,34 @@ en:
     #menu
     mc_tasksmgmt_menu_label: "Tasks Management"
     mc_timemgmt_menu_label: "Time Management"
-    mc_humanresourcemgmt_menu_label: "Human Resource Management"     
+    mc_humanresourcemgmt_menu_label: "Human Resource Management"
 
     #permissions
     permission_view_home_monitoring_controlling: "View M&C Tasks Management"
     permission_view_mc_time_mgmt_project: "View M&C Time Management"
-    permission_view_mc_human_resource_mgmt_project: "View M&C Human Resource Management"    
-        
+    permission_view_mc_human_resource_mgmt_project: "View M&C Human Resource Management"
+
     monitoring_controlling_title: "Monitoring & Controlling"
-    project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"    
+    project_module_monitoring_controlling_project: "Monitoring & Controlling by Project"
     monitoring_controlling_project: "Monitoring & Controlling by Project"
     statuses_issue_label_title: "Tasks by Statuses"
     categories_issue_label_title: "Tasks by Category"
-    
+    departament_issue_label_title: "Tasks by Department"
+
     task_management_label_title: "Tasks Management"
     task_manageable_chart_title: "Manageable Tasks"
     task_manageable_chart_overdue_title: "Overdue Tasks"
-    
+
     manageable_label: "Manageable(s)"
     unmanageable_label: "Unmanageable(s)"
     manageable_text_tip: "Tasks with due date."
     unmanageable_text_tip: "Tasks without due date."
-    
+
     tasks_label: "task(s)"
-    tasksof_label: "task(s) of"    
-    
+    tasksof_label: "task(s) of"
+
     overdue_label: "Overdue"
-    overdue_text: "overdue(s)"    
+    overdue_text: "overdue(s)"
     delivered_label: "Delivered"
     tobedelivered_label: "To be delivered"
     days_late_text: "day(s) late"
@@ -36,7 +37,7 @@ en:
     close_label: "close"
 
     # date format
-    default_date_format: "%Y/%m/%d"    
+    default_date_format: "%Y/%m/%d"
 
     # time management screen
     time_mgmt_label_title: "Due hours and Spent hours"
@@ -45,7 +46,7 @@ en:
     time_mgmt_spent_label: "Executed"
     time_mgmt_hours_label: "hour(s)"
     time_mgmt_error_no_issues_found_text: "No issues were found."
-    time_mgmt_error_no_issues_duedate_found_text: "No issues with due date registered were found."    
+    time_mgmt_error_no_issues_duedate_found_text: "No issues with due date registered were found."
     time_mgmt_version_label_title: "Versions by Hours"
 
     # human resource management
