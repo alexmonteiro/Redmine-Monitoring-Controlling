@@ -363,7 +363,7 @@ $(document).ready(function() {
         },
         xAxis: {
             categories: [
-               <% @issuesbycategory.each do |cat| %>
+               <% @issuesbydepartament.each do |cat| %>
                  <%= cat.name.to_s.inspect.html_safe %>,
                <%end%>
             ],
@@ -400,7 +400,7 @@ $(document).ready(function() {
             {
             name: '<%=t :tobedelivered_label%>',
             data: [
-                    <% @issuesbycategory.each do |cat| %>
+                    <% @issuesbydepartament.each do |cat| %>
                       <%= cat.totalundone %>,
                     <%end%>
                   ] ,
@@ -409,7 +409,7 @@ $(document).ready(function() {
                 {
                 name: '<%=t :delivered_label%>',
                 data: [
-                       <% @issuesbycategory.each do |cat| %>
+                       <% @issuesbydepartament.each do |cat| %>
                           <%= cat.totaldone %>,
                        <%end%>
                 ]   ,
