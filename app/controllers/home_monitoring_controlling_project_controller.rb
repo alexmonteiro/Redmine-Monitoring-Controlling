@@ -46,8 +46,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
                                                 order by 2;", true, false])
 
     #get count of issues by departmanent
-    @issuesbydepartament = IssueStatus.find_by_sql(["
-    select issue_categories.name, issue_categories.position, count(*) as totalbycategory,
+    @issuesbydepartament = IssueStatus.find_by_sql(["select issue_categories.name, count(*) as totalbycategory,
                                                 (select count(*)
                                                  from issues
                                                  where project_id in (#{stringSqlProjectsSubProjects})
