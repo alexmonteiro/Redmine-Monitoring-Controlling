@@ -8,9 +8,6 @@ class HomeMonitoringControllingProjectController < ApplicationController
   def index
     #tool instance
     tool = McTools.new
-    
-    #get main project
-    @project = Project.find_by_identifier(params[:id])
 
     #get projects and sub projects
     stringSqlProjectsSubProjects = tool.return_ids(@project.id)
