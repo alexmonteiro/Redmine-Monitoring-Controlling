@@ -1,0 +1,57 @@
+tr:
+    #menu
+    mc_tasksmgmt_menu_label: "İş İzlemesi"
+    mc_timemgmt_menu_label: "Zaman İzlemesi"
+    mc_humanresourcemgmt_menu_label: "İnsan Kaynakları İzlemesi"
+
+    #permissions
+    permission_view_home_monitoring_controlling: "İzleme ve Kontrol için görme"
+    permission_view_mc_time_mgmt_project: "Zaman izlemesini görme"
+    permission_view_mc_human_resource_mgmt_project: "İnsan Kaynkakları izlemesini görme"    
+        
+    monitoring_controlling_title: "İzleme ve Kontrol"
+    project_module_monitoring_controlling_project: "Proje bazında İzleme ve Kontrol"    
+    monitoring_controlling_project: "Proje bazında İzleme ve Kontrol"
+    statuses_issue_label_title: "Duruma göre İşler"
+    categories_issue_label_title: "Kategoriye göre İşler"
+    
+    task_management_label_title: "İş Yönetimi"
+    task_manageable_chart_title: "Yönetilebilir İşler"
+    task_manageable_chart_overdue_title: "Tarihi Geçmiş İşler"
+    
+    manageable_label: "Yönetiliebilir"
+    unmanageable_label: "Yönetilemez"
+    manageable_text_tip: "Teslim tarihi olan İşler."
+    unmanageable_text_tip: "Teslim tarihi olmayan İşler."
+    
+    tasks_label: "iş"
+    tasksof_label: "iş. toplam"    
+    
+    overdue_label: "Tarihi Geçmiş"
+    overdue_text: "tarihi geçmiş"    
+    delivered_label: "Teslim Edilmiş"
+    tobedelivered_label: "Teslim Edilecek"
+    days_late_text: "gün gecikmiş"
+
+    close_label: "kapat"
+
+    # date format
+    default_date_format: "%Y-%m-%d"
+    
+    # time management screen
+    time_mgmt_label_title: "Tahmin edilen ve Harcanan zaman"
+    time_mgmt_areaspline_yaxis_label: "Zaman (saat)"
+    time_mgmt_estimated_label: "Tahmini"
+    time_mgmt_spent_label: "Harcanmış"
+    time_mgmt_hours_label: "saat"
+    time_mgmt_error_no_issues_found_text: "Hiç iş bulanamadı."
+    time_mgmt_error_no_issues_duedate_found_text: "Bitiş tarihi işlenmiş herhangi iş bulunamadı."    
+    time_mgmt_version_label_title: "Sürüme göre Saat"
+
+    # human resource management
+    hr_mgmt_label_title: "İnsan Kaynakları İzleme"
+    hr_unassigned_issue_label: "atanmamış"
+    hr_columnbar_title_label: "Atanana göre İşler"
+    hr_columnbar_yaxis_label: "İş adedi"
+    hr_stackedcolumnbar_title_label: "Duruma göre atanan ve işler"
+    hr_stackedcolumnbar_yaxis_label: "İş adedi"
