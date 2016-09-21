@@ -19,7 +19,7 @@ class HomeMonitoringControllingProjectController < ApplicationController
     @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
     
     # total issues from the project and subprojects
-    @totalIssues = Issue.where(:project_id => [stringSqlProjectsSubProjects]).count
+    @totalIssues = @all_project_issues.count
     
     #get count of issues by category
     @issuesbycategory = IssueStatus.find_by_sql(["select trackers.name, trackers.position, count(*) as totalbycategory,
