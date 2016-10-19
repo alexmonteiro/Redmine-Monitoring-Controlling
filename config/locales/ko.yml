@@ -1,0 +1,57 @@
+en:
+    #menu
+    mc_tasksmgmt_menu_label: "작업 관리"
+    mc_timemgmt_menu_label: "시간 관리"
+    mc_humanresourcemgmt_menu_label: "인적 자원 관리"
+
+    #permissions
+    permission_view_home_monitoring_controlling: "M&C 작업 관리 보기"
+    permission_view_mc_time_mgmt_project: "M&C 시간 관리 보기"
+    permission_view_mc_human_resource_mgmt_project: "M&C 인적 자원 관리 보기"
+        
+    monitoring_controlling_title: "모니터링과 제어"
+    project_module_monitoring_controlling_project: "프로젝트별 모니터링과 제어"
+    monitoring_controlling_project: "프로젝트별 Monitoring & Controlling"
+    statuses_issue_label_title: "상태별 작업"
+    categories_issue_label_title: "범주별 작업"
+    
+    task_management_label_title: "작업 관리"
+    task_manageable_chart_title: "관리되는 작업"
+    task_manageable_chart_overdue_title: "기한넘긴 작업"
+    
+    manageable_label: "관리됨"
+    unmanageable_label: "관리되지않음"
+    manageable_text_tip: "마감기한 지정된 작업"
+    unmanageable_text_tip: "마감기한 지정없는 작업"
+    
+    tasks_label: "작업(들)"
+    tasksof_label: "작업(들)의"
+    
+    overdue_label: "마감기한"
+    overdue_text: "마감기한(들)"    
+    delivered_label: "납품됨"
+    tobedelivered_label: "납품예정"
+    days_late_text: "일(들) 지연"
+
+    close_label: "종결"
+
+    # date format
+    default_date_format: "%Y/%m/%d"    
+
+    # time management screen
+    time_mgmt_label_title: "추정 시간과 소모시간"
+    time_mgmt_areaspline_yaxis_label: "시간 (시)"
+    time_mgmt_estimated_label: "추정"
+    time_mgmt_spent_label: "실행됨"
+    time_mgmt_hours_label: "시"
+    time_mgmt_error_no_issues_found_text: "일감을 찾을 수 없음."
+    time_mgmt_error_no_issues_duedate_found_text: "마감 기한이 지정된 일감을 찾을 수 없음."
+    time_mgmt_version_label_title: "버전별 시간"
+
+    # human resource management
+    hr_mgmt_label_title: "인적 자원 관리"
+    hr_unassigned_issue_label: "미지정"
+    hr_columnbar_title_label: "담당자 지정된 일감"
+    hr_columnbar_yaxis_label: "일감 수"
+    hr_stackedcolumnbar_title_label: "상태별 담당자와 일감들"
+    hr_stackedcolumnbar_yaxis_label: "일감의 수"
