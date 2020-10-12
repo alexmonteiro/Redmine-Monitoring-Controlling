@@ -6,114 +6,47 @@ class HomeMonitoringControllingProjectController < ApplicationController
   menu_item :redmine_monitoring_controlling
 
   def index
-    #tool instance
-    tool = McTools.new
-    
-    #get main project
-    @project = Project.find_by_identifier(params[:id])
-
-    #get projects and sub projects
-    stringSqlProjectsSubProjects = tool.return_ids(@project.id)
-    
-    @projects_subprojects = Project.find_by_sql("select * from projects where id in (#{stringSqlProjectsSubProjects});")
-    @all_project_issues = Issue.find_by_sql("select * from issues where project_id in (#{stringSqlProjectsSubProjects});")
+    @subprojects = @project.descendants
+    @allprojects = @subprojects.map(&:id) + Project.where(:identifier => params[:id]).select(:id).map(&:id) || []
+    @all_project_issues = Issue.where(:project_id => @allprojects)
     
     # total issues from the project and subprojects
-    @totalIssues = Issue.where(:project_id => [stringSqlProjectsSubProjects]).count
+    @totalIssues = Issue.where(:project_id => @allprojects).count
     
     #get count of issues by category
-    @issuesbycategory = IssueStatus.find_by_sql(["select trackers.name, trackers.position, count(*) as totalbycategory,
-                                                (select count(*) 
-                                                 from issues 
-                                                 where project_id in (#{stringSqlProjectsSubProjects})
-                                                 and issues.tracker_id = trackers.id
-                                                 and status_id in (select id from issue_statuses where is_closed = ?)
-
-                                                ) as totaldone,
-                                                (select count(*) 
-                                                 from issues 
-                                                 where project_id in (#{stringSqlProjectsSubProjects})
-                                                 and issues.tracker_id = trackers.id
-                                                 and status_id in (select id from issue_statuses where is_closed = ?)
-
-                                                ) as totalundone
-                                                from trackers, projects_trackers, issues
-                                                where projects_trackers.tracker_id = trackers.id 
-                                                and projects_trackers.project_id = issues.project_id
-                                                and issues.tracker_id = trackers.id
-                                                and projects_trackers.project_id in (#{stringSqlProjectsSubProjects}) 
-                                                group by trackers.id, trackers.name, trackers.position
-                                                order by 2;", true, false])
-
-
+    @issuesbycategory = IssueStatus.includes(:issue).where(:issue => {:project_id => @allprojects}).group('issue_statuses.name, issue_statuses.position')
+    
     #get statuses by main project and subprojects
     if @totalIssues > 0 
-      @statuses = IssueStatus.find_by_sql("SELECT *,
-                                            ((SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
-                                            /
-                                            #{@totalIssues})*100 as percent,
-                                            (SELECT COUNT(1) FROM issues where project_id in (#{stringSqlProjectsSubProjects}) and status_id = issue_statuses.id)
-                                            AS totalissues
-                                            FROM issue_statuses;")
+      @statuses = IssueStatus.includes(:issue).where(:issue => { :project_id => @allprojects}).group(:id).select('issue_statuses.*, (COUNT(*) / #{@totalIssues}) * 100 as percent, COUNT(*) as totalissues')
     else
       @statuses = nil
     end                                          
 
     #get management issues by main project
-    @managementissues = Issue.find_by_sql("select 1 as id, '#{t :manageable_label}' as typemanagement, count(1) as totalissues
-                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is not null
-                                                union
-                                                select 2 as id, '#{t :unmanageable_label}' as typemanagement, count(1) as totalissues
-                                                from issues where project_id in (#{stringSqlProjectsSubProjects}) and due_date is null;")
+    @managementissues = Issue.where("id IN (#{@allprojects.join(',')}) and due_date is not null").select("1 as id, '#{t :manageable_label}' as typemanagement, count(*) as totalissues")
+    @managementissues += Issue.where(:id => @allprojects, :due_date => nil).select("2 as id, '#{t :unmanageable_label}' as typemanagement, count(*) as totalissues")
 
-
+    @closedIssueStatus = IssueStatus.where(:is_closed => true).map(&:id)
+    @openIssueStatus = IssueStatus.where(:is_closed => false).map(&:id)
     #get overdue issues for char by by project and subprojects
-    @overdueissueschart = Issue.find_by_sql(["select 2 as id, '#{t :overdue_label}' as typeissue, count(1) as totalissuedelayed
-                                                  from issues
-                                                  where project_id in (#{stringSqlProjectsSubProjects})
-                                                  and due_date is not null
-                                                  and due_date <  '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = ?)
-                                                  union
-                                                  select 1 as id, '#{t :delivered_label}' as typeissue, count(1) as totalissuedelayed
-                                                  from issues
-                                                  where project_id in (#{stringSqlProjectsSubProjects})
-                                                  and due_date is not null
-                                                  and due_date < '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = ?)
-                                                  union
-                                                  select 3 as id, '#{t :tobedelivered_label}' as typeissue, count(1) as totalissuedelayed
-                                                  from issues
-                                                  where project_id in (#{stringSqlProjectsSubProjects})
-                                                  and due_date is not null
-                                                  and due_date >= '#{Date.today}'
-                                                  and status_id in (select id from issue_statuses where is_closed = ?)
-                                                  order by 1;", false, true, false])
-
+    @overdueissueschart = Issue.where("project_id IN(#{@allprojects.join(',')}) AND due_date IS NOT NULL and due_date < '#{Date.today}'
+				    AND status_id IN (#{@openIssueStatus.join(',')})").select("1 as id, '#{t :delivered_label}' as typeissue, count(*) as totalissuedelayed")
+    @overdueissueschart += Issue.where("project_id IN(#{@allprojects.join(',')}) AND due_date IS NOT NULL and due_date < '#{Date.today}'
+				    AND status_id IN (#{@closedIssueStatus.join(',')})").select("2 as id, '#{t :overdue_label}' as typeissue, count(*) as totalissuedelayed")
+    @overdueissueschart += Issue.where("project_id IN(#{@allprojects.join(',')}) AND due_date IS NOT NULL and due_date >= '#{Date.today}'
+				    AND status_id IN (#{@closedIssueStatus.join(',')})").select("3 as id, '#{t :tobedelivered_label}' as typeissue, count(*) as totalissuedelayed")
 
     #get overdueissues by project and subprojects
-    @overdueissues   =   Issue.find_by_sql(["select *
-                                                    from issues
-                                                    where project_id in (#{stringSqlProjectsSubProjects})
-                                                    and due_date is not null
-                                                    and due_date < '#{Date.today}'
-                                                    and status_id in (select id from issue_statuses where is_closed = ? )
-                                                    order by due_date;",false])
+    @overdueissues = Issue.where("project_id IN(#{@allprojects.join(',')}) AND due_date IS NOT NULL and due_date < '#{Date.today}'
+				    AND status_id IN (#{@closedIssueStatus.join(',')})").order(:due_date)
 
     #get unmanagement issues by main project
-    @unmanagementissues = Issue.find_by_sql("select *
-                                             from issues where project_id in (#{stringSqlProjectsSubProjects}) 
-                                             and due_date is null
-                                             order by 1;")
-
-
-
-
-
+    @unmanagementissues = Issue.where(:project_id => @allprojects, :due_date => nil).order(:id)
   end
 
   private
   def find_project
     @project=Project.find(params[:id])
-  end    
+  end
 end
