@@ -1,0 +1,58 @@
+cs:
+    #menu
+    mc_tasksmgmt_menu_label: "Řízení úkolů"
+    mc_timemgmt_menu_label: "Řízení času"
+    mc_humanresourcemgmt_menu_label: "Řízení lidských zdrojů"
+
+    #permissions
+    permission_view_home_monitoring_controlling: "Zobrazit M&C Řízení úkolů"
+    permission_view_mc_time_mgmt_project: "Zobrazit M&C Řízení času"
+    permission_view_mc_human_resource_mgmt_project: "Zobrazit M&C Řízení lidských zdrojů"
+
+    monitoring_controlling_title: "Monitoring & Controlling"
+    project_module_monitoring_controlling_project: "Monitoring & Controlling projektu"
+    monitoring_controlling_project: "Monitoring & Controlling projektu"
+    statuses_issue_label_title: "Úkoly dle stavu"
+    categories_issue_label_title: "Úkoly dle fronty"
+
+    task_management_label_title: "Řízení úkolů"
+    task_manageable_chart_title: "Řiditelné úkoly"
+    task_manageable_chart_overdue_title: "Zpožděné úkoly"
+
+    manageable_label: "Řiditelné"
+    unmanageable_label: "Neřiditelné"
+    manageable_text_tip: "Úkoly s termínem splnění."
+    unmanageable_text_tip: "Úkoly bez termínu splnění."
+
+    tasks_label: "úkol(ů)"
+    tasksof_label: "úkol(ů) z"
+
+    overdue_label: "Zpoždění"
+    overdue_text: "zpožděno"
+    delivered_label: "Vyřešený"
+    tobedelivered_label: "V řešení"
+    days_late_text: "dní zpoždění"
+
+    close_label: "zavřit"
+
+    # date format
+    default_date_format: "%d.%m.%Y"
+
+    # time management screen
+    time_mgmt_label_title: "Termíny a strávené hodiny"
+    time_mgmt_areaspline_yaxis_label: "Hodin"
+    time_mgmt_estimated_label: "Odhadovaný"
+    time_mgmt_spent_label: "Strávený"
+    time_mgmt_hours_label: "hodin"
+    time_mgmt_error_no_issues_found_text: "Nebyly nalezeny žádné problémy."
+    time_mgmt_error_no_issues_duedate_found_text: "Nebyly nalezeny žádné problémy s termínem splnění."
+    time_mgmt_version_label_title: "Strávených hodin dle verze"
+
+    # human resource management
+    hr_mgmt_label_title: "Řízení lidských zdrojů"
+    hr_unassigned_issue_label: "nepřiřazené"
+    hr_columnbar_title_label: "Přiřazené úkoly"
+    hr_columnbar_yaxis_label: "Počet úkolů"
+    hr_stackedcolumnbar_title_label: "Řešitelé a úkoly dle situace"
+    hr_stackedcolumnbar_yaxis_label: "Počet úkolů"
+    
