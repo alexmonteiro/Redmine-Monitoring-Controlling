@@ -1,5 +1,5 @@
 <!--
-Tasks by Statuses / Situação por Tarefas 
+Tasks by Statuses / Situação por Tarefas
 -->
 <script type="text/javascript">
 $(function () {
@@ -43,7 +43,7 @@ $(function () {
             }]
         });
     });
-    
+
 });
 
 </script>
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	chart = new Highcharts.Chart({
      	credits: {
  		  enabled: false
-		},		
+		},
 		chart: {
 			renderTo: 'containerColumn',
 			type: 'column'
@@ -161,7 +161,7 @@ $(function () {
             }]
         });
     });
-    
+
 });
 </script>
 
@@ -210,7 +210,7 @@ $(function () {
             }]
         });
     });
-    
+
 });
 
 </script>
@@ -257,86 +257,212 @@ $(function () {
             }]
         });
     });
-    
+
 });
 </script>
 
 <script type="text/javascript">
 var chart;
 $(document).ready(function() {
-	chart = new Highcharts.Chart({
-		chart: {
-			renderTo: 'categoryStackedColumn',
-			type: 'column'
-		},
-		title: {
-			text: '<%=@project.name%>'
-		},
-		subtitle: {
-			text: '<%=t :categories_issue_label_title%>'
-		},
-		scrollbar:{
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'categoryStackedColumn',
+            type: 'column'
+        },
+        title: {
+            text: '<%=@project.name%>'
+        },
+        subtitle: {
+            text: '<%=t :categories_issue_label_title%>'
+        },
+        scrollbar:{
             enabled: false
         },
-     	credits: {
- 		  enabled: false
-		},
-		xAxis: {
-			categories: [
-			   <% @issuesbycategory.each do |cat| %>
-   			     <%= cat.name.to_s.inspect.html_safe %>,
-			   <%end%>
-			],
-			labels: {
-				rotation: -45,
-				align: 'right',
-				style: {
-					font: 'normal 13px Verdana, sans-serif'
-				}
-			}
-		},
-		yAxis: {
-			min: 0,
-			title: {
-				text: ''
-			}
-		},
-		legend: {
-			enabled: true,
-			reversed: true
-		},
-		tooltip: {
-			formatter: function() {
-				return ''+
-					this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)';
-			}
-		},
-		plotOptions: {
-			column: {
-				stacking: 'percent'
-			}
-		},
-			series: [
-			{
-			name: '<%=t :tobedelivered_label%>',
-			data: [
-			 	   	<% @issuesbycategory.each do |cat| %>
-     			      <%= cat.totalundone %>,
-			        <%end%>
-				  ]	,
-					color: '#AA4643'
-		    },
-				{
-				name: '<%=t :delivered_label%>',
-				data: [
-				 	   <% @issuesbycategory.each do |cat| %>
-         			      <%= cat.totaldone %>,
-	       		       <%end%>				  
-				]	,
-					color: '#4572A7'
-			    }
-				
-		]
-	});
+        credits: {
+          enabled: false
+        },
+        xAxis: {
+            categories: [
+               <% @issuesbycategory.each do |cat| %>
+                 <%= cat.name.to_s.inspect.html_safe %>,
+               <%end%>
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    font: 'normal 13px Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ''
+            }
+        },
+        legend: {
+            enabled: true,
+            reversed: true
+        },
+        tooltip: {
+            formatter: function() {
+                return ''+
+                    this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)';
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'percent'
+            }
+        },
+            series: [
+            {
+            name: '<%=t :tobedelivered_label%>',
+            data: [
+                    <% @issuesbycategory.each do |cat| %>
+                      <%= cat.totalundone %>,
+                    <%end%>
+                  ] ,
+                    color: '#AA4643'
+            },
+                {
+                name: '<%=t :delivered_label%>',
+                data: [
+                       <% @issuesbycategory.each do |cat| %>
+                          <%= cat.totaldone %>,
+                       <%end%>
+                ]   ,
+                    color: '#4572A7'
+                }
+
+        ]
+    });
+});
+</script>
+
+
+<script type="text/javascript">
+$(function () {
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            credits: {
+              enabled: false
+            },
+            chart: {
+                renderTo: 'departamentPie',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '<%=@project.name%>'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.y,0) +' <%=t :tasks_label%>';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage,2) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                data: <%=@issuesbydepartament.map{ |category| [category.name.to_s, category.totalbycategory.to_i]}.inspect.html_safe%>
+            }]
+        });
+    });
+
+});
+</script>
+<script type="text/javascript">
+var chart;
+$(document).ready(function() {
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'departamentStackedColumn',
+            type: 'column'
+        },
+        title: {
+            text: '<%=@project.name%>'
+        },
+        subtitle: {
+            text: '<%=t :departament_issue_label_title%>'
+        },
+        scrollbar:{
+            enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        xAxis: {
+            categories: [
+               <% @issuesbydepartament.each do |cat| %>
+                 <%= cat.name.to_s.inspect.html_safe %>,
+               <%end%>
+            ],
+            labels: {
+                rotation: -45,
+                align: 'right',
+                style: {
+                    font: 'normal 13px Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: ''
+            }
+        },
+        legend: {
+            enabled: true,
+            reversed: true
+        },
+        tooltip: {
+            formatter: function() {
+                return ''+
+                    this.series.name +': '+ this.y +' ('+ Math.round(this.percentage) +'%)';
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'percent'
+            }
+        },
+            series: [
+            {
+            name: '<%=t :tobedelivered_label%>',
+            data: [
+                    <% @issuesbydepartament.each do |cat| %>
+                      <%= cat.totalundone %>,
+                    <%end%>
+                  ] ,
+                    color: '#AA4643'
+            },
+                {
+                name: '<%=t :delivered_label%>',
+                data: [
+                       <% @issuesbydepartament.each do |cat| %>
+                          <%= cat.totaldone %>,
+                       <%end%>
+                ]   ,
+                    color: '#4572A7'
+                }
+
+        ]
+    });
 });
 </script>

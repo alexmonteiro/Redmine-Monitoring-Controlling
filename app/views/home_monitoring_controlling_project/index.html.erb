@@ -18,6 +18,13 @@
 	</div>
 
 	<div class="double_charts">
+	 <h2><%= t :departament_issue_label_title %></h2>
+
+	 <div id="departamentPie" class="double_chart"></div>
+	 <div id="departamentStackedColumn" class="double_chart"></div>
+	</div>
+
+	<div class="double_charts">
 	 <h2><%= t :categories_issue_label_title %></h2>
 
 	 <div id="categoryPie" class="double_chart"></div>
@@ -35,7 +42,7 @@
 	    <%if (issue.id == 1)%>
 	     <b><%= issue.typemanagement %>: <%= issue.totalissues %></b>
 	     <div><%= t :manageable_text_tip %></div><br/>
-	    <%else%>	
+	    <%else%>
 	     <b><a href="#TB_inline?height=400&width=600&inlineId=hiddenModalContentUnmanageable&modal=false" title='<%= issue.typemanagement %>: <%= issue.totalissues %>' class="thickbox"><%= issue.typemanagement %>: <%= issue.totalissues %></a></b>
 	     <div><%= t :unmanageable_text_tip %></div>
 	     <div id="hiddenModalContentUnmanageable" style="display: none;">
